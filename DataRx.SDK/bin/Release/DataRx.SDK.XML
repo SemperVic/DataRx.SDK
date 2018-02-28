@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataRx.SDK</name>
+    </assembly>
+    <members>
+        <member name="T:DataRx.SDK.Common.DAOFactoryProvider">
+            <summary>
+            Data Access Object Factory Providers
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Common.DataTypeConversion.MSSQLToDotNet(System.String)">
+            <summary>
+            Converts MS SQL Server data type to .Net data type
+            </summary>
+            <param name="value">SQL Server Data Type</param>
+            <returns>.Net Data Type</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.DataTypeConversion.SQLiteToDotNet(System.String)">
+            <summary>
+            Converts SQLite3 data types to .Net data types
+            </summary>
+            <param name="value">SQLite Data Type</param>
+            <returns>.Net Data Type</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.DataTypeConversion.MySqlToDotNet(System.String)">
+            <summary>
+            Converts MySQL data types to .Net data types
+            </summary>
+            <param name="value">SQLite Data Type</param>
+            <returns>.Net Data Type</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.DataTypeConversion.MSSQLToJava(System.String)">
+            <summary>
+            Converts MS SQL Server data type to .Net data type
+            </summary>
+            <param name="value">SQL Server Data Type</param>
+            <returns>.Net Data Type</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.DataTypeConversion.SQLiteToJava(System.String)">
+            <summary>
+            Converts SQLite3 data types to .Net data types
+            </summary>
+            <param name="value">SQLite Data Type</param>
+            <returns>.Net Data Type</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.DataTypeConversion.MySqlToJava(System.String)">
+            <summary>
+            Converts MySQL data types to .Net data types
+            </summary>
+            <param name="value">SQLite Data Type</param>
+            <returns>.Net Data Type</returns>
+        </member>
+        <member name="T:DataRx.SDK.Common.StringHelper">
+            <summary>
+            The StringHelper class provides string formatting features that assist in 
+            standardizing coding and naming conventions.
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Common.StringHelper.IDefinitionFormat(System.String)">
+            <summary>
+            Used to convert string to IDEF1X naming convention
+            </summary>
+            <param name="inDefString">String to format</param>
+            <returns>IDEF1X Formatted String</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.StringHelper.ToDromedaryCase(System.String)">
+            <summary>
+            Same as Pascal Case. Words created by concatenating capitalized words. 
+            DromedaryCase restriction requires that the first letter must be upper 
+            case. Uses MS Cultural TextInfo object to perform conversion.
+            Example: Pascal Case becomes PascalCase. 
+            </summary>
+            <param name="iDefName">String to be formated</param>
+            <returns>Formated string</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.StringHelper.toTitleCase(System.String)">
+            <summary>
+            Applies (EN-US) MS Cultural TextInfo Formatting
+            </summary>
+            <param name="value">String to format</param>
+            <returns>Formatted string</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.StringHelper.ToMedialCase(System.String)">
+            <summary>
+            Same as Camel Case w/restrictions.  MedialCasing is the practice of 
+            writing compound words or phrases such that the first word of the string is 
+            all lower case and each word or abbreviation in the middle of the phrase 
+            begins with a capital letter, with no intervening spaces or punctuation.
+            </summary>
+            <param name="value">String to format</param>
+            <returns>Formated String</returns>
+        </member>
+        <member name="T:DataRx.SDK.Model.CompositeModel">
+            <summary>
+            AZ Composite Entity, Attribute Object Model.
+            Composite Entity pattern is used in persistence mechanisms. A Composite entity is an entity object 
+            model which represents a graph of objects. When a composite entity is updated, internally dependent
+            objects get updated automatically as being managed by the composite object class. 
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.CompositeModel.Entities">
+            <summary>
+            Composite Model Entities
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.CompositeModel.ClassName">
+            <summary>
+            Runtime class name with full class path
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.CompositeModel.TNS">
+            <summary>
+            A2Z Taxonomy Namespace. Example: MDR
+            Ref: A2Z DTO Model Namespaces
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.CompositeModel.DAOFactory">
+            <summary>
+            Data Access Object provider
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Model.InDefinition">
+            <summary>
+            Integration Definition Prototype Class
+            This is not an interface/contract class.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.InDefinition.SerialVersionUID">
+            <summary>
+            The serial version UID associates an object with a class object container capable of 
+            serialization/deserialization. If the class object cannot be found an 
+            InvalidClassException will be thrown.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.InDefinition.IDEFName">
+            <summary>
+            Integration Definition (ref: IDEF) is used to logically 
+            identify the object's namespace taxonomy. No spaces are allowed 
+            and string character data is converted to upper case in accordance 
+            with A2Z IDEF1X modeling conventions. Example: TAX_KEY
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.InDefinition.PublicName">
+            <summary>
+            Logical public object name. This is usually in sentence format 
+            otherwise refered to as Pascal Casing. Pascal capitalizes the 
+            first letter of each word w/o spaces between words. 
+            Example: 'TaxKey'
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.InDefinition.PrivateName">
+            <summary>
+            Logcal private object name. This is usually in a camel case format 
+            w/o any spaces between words. 
+            Example: 'taxKey'
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.Entity.Attributes">
+            <summary>
+            Entity Attributes Array
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.Entity.EntityLexicon">
+            <summary>
+            Lexicon used when documenting object taxonomy. Example: 'Metadata Prototype Object'
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.Entity.ShortDesc">
+            <summary>
+            Short description describing the entity in 512 characters or less
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.Attribute.Property">
+            <summary>
+            An Attribute's properties identify the physical characterstics and 
+            constraints for of the attribute specified.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.Attribute.AttributeLexicon">
+            <summary>
+            Attribute lexicon used when documenting object taxonomy. 
+            Example: 'Tax Key'
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.Attribute.ShortDesc">
+            <summary>
+            Short description describing the entity in 512 characters or less.
+            Example: 'Primary key constraint.'
+            </summary>
+        </member>
+    </members>
+</doc>
