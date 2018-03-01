@@ -14,7 +14,7 @@ This project will initially use a three point early versioning convention that e
 - Development Stage: Alpha *(Not ready for consumption or forking)*
 - Current Version: 1.0.1
 
-Review [Full Version Log](blob/master/Docs/VERSION_LOG.md) here as well the three point early versioning works.
+Review [Full Version Log](Docs/VERSION_LOG.md) here as well the three point early versioning works.
 
 ## Commit Milestones & Notes:
 
