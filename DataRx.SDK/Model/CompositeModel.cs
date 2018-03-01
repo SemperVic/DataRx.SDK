@@ -2,7 +2,7 @@
  *  Author(s):  SemperVic@GitHub
  *  Website:    //datarx.org
  *  Date:       02/28/2018
- *  Version:    1.0.0 (Alpha)
+ *  Version:    1.0.1 (Alpha)
  * */
 
 using System;
@@ -292,6 +292,7 @@ namespace DataRx.SDK.Model
     [DataContract]
     public partial class InDefinition
     {
+        /** Class Properties **/
         private Guid serialVersionUID = new Guid();
         private String idefName = String.Empty;
         private String publicName = String.Empty;
@@ -342,6 +343,10 @@ namespace DataRx.SDK.Model
         /// Example: 'taxKey'
         /// </summary>
         [DataMember]
-        public String PrivateName { get; set; }
+        public String PrivateName 
+        { 
+            get { return this.privateName; }
+            set {this.privateName = value; }
+        }
     }
 }
