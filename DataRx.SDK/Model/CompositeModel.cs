@@ -53,7 +53,6 @@ namespace DataRx.SDK.Model
             get { return this.daoFactory; }
             set { this.daoFactory = value; }
         }
-
         /// <summary>
         /// Composite Model Entities
         /// </summary>
@@ -61,7 +60,12 @@ namespace DataRx.SDK.Model
 
         
     }
-
+    /// <summary>
+    /// The A2Z Entity Object is an independent container class used 
+    /// to describe object taxonomy and hierarchy similar to a database 
+    /// table, data transfer object or perhaps a serialized json document 
+    /// stored in a no-sql document database.
+    /// </summary>
     [DataContract]
     public class Entity : InDefinition
     {
@@ -78,7 +82,9 @@ namespace DataRx.SDK.Model
         /// </summary>
         public List<Attribute> Attributes = new List<Attribute>();
     }
-
+    /// <summary>
+    /// The A2Z Attribute defines information about the entity that needs to be stored.
+    /// </summary>
     [DataContract]
     public class Attribute : InDefinition
     {
@@ -97,14 +103,27 @@ namespace DataRx.SDK.Model
         /// constraints for of the attribute specified.
         /// </summary>
         public AttributeProperty Property = new AttributeProperty();
+        /// <summary>
+        /// Identifies the Entity/Attribute dependency hierarchy
+        /// </summary>
+        public List<ObjectDependency> Dependencies = new List<ObjectDependency>();
     }
-
+    /// <summary>
+    /// The ObjectDependency object identifies foreign key inheritance and entity hierarchy
+    /// </summary>
     [DataContract]
-    public class Dependency
+    public class ObjectDependency
     {
-
+        public String ConstraintName = String.Empty;
+        public String PKTableName = String.Empty;
+        public String PKColumnName = String.Empty;
+        public String FKTableName = String.Empty;
+        public String FKColumnName = String.Empty;
     }
-
+    /// <summary>
+    /// An Attribute's properties identify the physical characterstics and 
+    /// constraints for of the attribute specified.
+    /// </summary>
     [DataContract]
     public class AttributeProperty
     {
