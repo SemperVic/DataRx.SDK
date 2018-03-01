@@ -99,10 +99,8 @@
             objects get updated automatically as being managed by the composite object class. 
             </summary>
         </member>
-        <member name="F:DataRx.SDK.Model.CompositeModel.Entities">
-            <summary>
-            Composite Model Entities
-            </summary>
+        <member name="F:DataRx.SDK.Model.CompositeModel.className">
+            Class Properties *
         </member>
         <member name="P:DataRx.SDK.Model.CompositeModel.ClassName">
             <summary>
@@ -118,6 +116,152 @@
         <member name="P:DataRx.SDK.Model.CompositeModel.DAOFactory">
             <summary>
             Data Access Object provider
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.CompositeModel.Entities">
+            <summary>
+            Composite Model Entities
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Model.Entity">
+            <summary>
+            The A2Z Entity Object is an independent container class used 
+            to describe object taxonomy and hierarchy similar to a database 
+            table, data transfer object or perhaps a serialized json document 
+            stored in a no-sql document database.
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.Entity.entityLexicon">
+            Class Properties *
+        </member>
+        <member name="P:DataRx.SDK.Model.Entity.EntityLexicon">
+            <summary>
+            Lexicon used when documenting object taxonomy. Example: 'Metadata Prototype Object'
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.Entity.ShortDesc">
+            <summary>
+            Short description describing the entity in 512 characters or less
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.Entity.Attributes">
+            <summary>
+            Entity Attributes Array
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.Entity.Dependencies">
+            <summary>
+            Identifies the Entity/Attribute dependency hierarchy
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Model.Attribute">
+            <summary>
+            The A2Z Attribute defines information about the entity that needs to be stored.
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.Attribute.attributeLexicon">
+            Class Properties *
+        </member>
+        <member name="P:DataRx.SDK.Model.Attribute.AttributeLexicon">
+            <summary>
+            Attribute lexicon used when documenting object taxonomy. 
+            Example: 'Tax Key'
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.Attribute.ShortDesc">
+            <summary>
+            Short description describing the entity in 512 characters or less.
+            Example: 'Primary key constraint.'
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.Attribute.Property">
+            <summary>
+            An Attribute's properties identify the physical characterstics and 
+            constraints for of the attribute specified.
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Model.ObjectDependency">
+            <summary>
+            The ObjectDependency object identifies foreign key inheritance and entity hierarchy
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.ObjectDependency.constraintName">
+            Class Properties *
+        </member>
+        <member name="P:DataRx.SDK.Model.ObjectDependency.ConstraintName">
+            <summary>
+            Dependency constraint name uses an IDefinitionFormatted string to identify 
+            named constraints within the super entity.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.ObjectDependency.PKEntityName">
+            <summary>
+            Parent entity
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.ObjectDependency.PKAttributeName">
+            <summary>
+            Primary key constraint
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.ObjectDependency.FKEntityName">
+            <summary>
+            Child entity
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.ObjectDependency.FKAttributeName">
+            <summary>
+            Inherited foreign key
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Model.AttributeProperty">
+            <summary>
+            An Attribute's properties identify the physical characterstics and 
+            constraints for of the attribute specified.
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.AttributeProperty.constraintName">
+            Class Properties *
+        </member>
+        <member name="P:DataRx.SDK.Model.AttributeProperty.ConstraintName">
+            <summary>
+            Dependency constraint name uses an IDefinitionFormatted string to identify 
+            named constraints within the super entity.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.AttributeProperty.Size">
+            <summary>
+            Size of attribute data type
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.AttributeProperty.DBDataType">
+            <summary>
+            Database Data Type
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.AttributeProperty.RTDataType">
+            <summary>
+            Runtime Data Type
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.AttributeProperty.IsNullable">
+            <summary>
+            Allow null values when saving to disk.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.AttributeProperty.IsPrimaryKey">
+            <summary>
+            Identifies if attribute is a primary key constraint
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.AttributeProperty.IsForeignKey">
+            <summary>
+            Identifies if attribute inherits a primary key from another entity
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.AttributeProperty.IsIndexed">
+            <summary>
+            Identifies if attribute is indexed
             </summary>
         </member>
         <member name="T:DataRx.SDK.Model.InDefinition">
@@ -154,39 +298,6 @@
             Logcal private object name. This is usually in a camel case format 
             w/o any spaces between words. 
             Example: 'taxKey'
-            </summary>
-        </member>
-        <member name="F:DataRx.SDK.Model.Entity.Attributes">
-            <summary>
-            Entity Attributes Array
-            </summary>
-        </member>
-        <member name="P:DataRx.SDK.Model.Entity.EntityLexicon">
-            <summary>
-            Lexicon used when documenting object taxonomy. Example: 'Metadata Prototype Object'
-            </summary>
-        </member>
-        <member name="P:DataRx.SDK.Model.Entity.ShortDesc">
-            <summary>
-            Short description describing the entity in 512 characters or less
-            </summary>
-        </member>
-        <member name="F:DataRx.SDK.Model.Attribute.Property">
-            <summary>
-            An Attribute's properties identify the physical characterstics and 
-            constraints for of the attribute specified.
-            </summary>
-        </member>
-        <member name="P:DataRx.SDK.Model.Attribute.AttributeLexicon">
-            <summary>
-            Attribute lexicon used when documenting object taxonomy. 
-            Example: 'Tax Key'
-            </summary>
-        </member>
-        <member name="P:DataRx.SDK.Model.Attribute.ShortDesc">
-            <summary>
-            Short description describing the entity in 512 characters or less.
-            Example: 'Primary key constraint.'
             </summary>
         </member>
     </members>

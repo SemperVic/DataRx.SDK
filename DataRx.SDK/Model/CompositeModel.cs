@@ -24,6 +24,7 @@ namespace DataRx.SDK.Model
     [DataContract]
     public class CompositeModel
     {
+        /** Class Properties **/
         private String className = String.Empty;
         private String tns = String.Empty;
         private String daoFactory = String.Empty;
@@ -56,9 +57,7 @@ namespace DataRx.SDK.Model
         /// <summary>
         /// Composite Model Entities
         /// </summary>
-        public List<Entity> Entities = new List<Entity>();
-
-        
+        public List<Entity> Entities = new List<Entity>();        
     }
     /// <summary>
     /// The A2Z Entity Object is an independent container class used 
@@ -69,18 +68,35 @@ namespace DataRx.SDK.Model
     [DataContract]
     public class Entity : InDefinition
     {
+        /** Class Properties **/
+        private String entityLexicon = String.Empty;
+        private String shortDesc = String.Empty;
         /// <summary>
         /// Lexicon used when documenting object taxonomy. Example: 'Metadata Prototype Object'
         /// </summary>
-        public String EntityLexicon { get; set; }
+        [DataMember]
+        public String EntityLexicon
+        {
+            get { return this.entityLexicon; } 
+            set { this.entityLexicon = value; }
+        }
         /// <summary>
         /// Short description describing the entity in 512 characters or less
         /// </summary>
-        public String ShortDesc { get; set; }
+        [DataMember]
+        public String ShortDesc
+        {
+            get { return this.shortDesc; }
+            set { this.shortDesc = value; }
+        }
         /// <summary>
         /// Entity Attributes Array
         /// </summary>
         public List<Attribute> Attributes = new List<Attribute>();
+        /// <summary>
+        /// Identifies the Entity/Attribute dependency hierarchy
+        /// </summary>
+        public List<ObjectDependency> Dependencies = new List<ObjectDependency>();
     }
     /// <summary>
     /// The A2Z Attribute defines information about the entity that needs to be stored.
@@ -88,25 +104,35 @@ namespace DataRx.SDK.Model
     [DataContract]
     public class Attribute : InDefinition
     {
+        /** Class Properties **/
+        private String attributeLexicon = String.Empty;
+        private String shortDesc = String.Empty;
         /// <summary>
         /// Attribute lexicon used when documenting object taxonomy. 
         /// Example: 'Tax Key'
         /// </summary>
-        public String AttributeLexicon { get; set; }
+        [DataMember]
+        public String AttributeLexicon
+        {
+            get { return this.attributeLexicon; }
+            set { this.attributeLexicon = value; }
+        }
         /// <summary>
         /// Short description describing the entity in 512 characters or less.
         /// Example: 'Primary key constraint.'
         /// </summary>
-        public String ShortDesc { get; set; }
+        [DataMember]
+        public String ShortDesc
+        {
+            get { return this.shortDesc; }
+            set { this.shortDesc = value; }
+
+        }
         /// <summary>
         /// An Attribute's properties identify the physical characterstics and 
         /// constraints for of the attribute specified.
         /// </summary>
         public AttributeProperty Property = new AttributeProperty();
-        /// <summary>
-        /// Identifies the Entity/Attribute dependency hierarchy
-        /// </summary>
-        public List<ObjectDependency> Dependencies = new List<ObjectDependency>();
     }
     /// <summary>
     /// The ObjectDependency object identifies foreign key inheritance and entity hierarchy
@@ -114,11 +140,59 @@ namespace DataRx.SDK.Model
     [DataContract]
     public class ObjectDependency
     {
-        public String ConstraintName = String.Empty;
-        public String PKTableName = String.Empty;
-        public String PKColumnName = String.Empty;
-        public String FKTableName = String.Empty;
-        public String FKColumnName = String.Empty;
+        /** Class Properties **/
+        private String constraintName = String.Empty;
+        private String pkEntityIDefName = String.Empty;
+        private String pkAttributeIDefName = String.Empty;
+        private String fkEntityIDefName = String.Empty;
+        private String fkAttributeIDefName = String.Empty;
+
+        /// <summary>
+        /// Dependency constraint name uses an IDefinitionFormatted string to identify 
+        /// named constraints within the super entity.
+        /// </summary>
+        [DataMember]
+        public String ConstraintName
+        {
+            get { return this.constraintName; }
+            set { this.constraintName = value; }
+        }
+        /// <summary>
+        /// Parent entity
+        /// </summary>
+        [DataMember]
+        public String PKEntityName
+        {
+            get { return this.pkEntityIDefName; }
+            set { this.pkEntityIDefName = value; }
+        }
+        /// <summary>
+        /// Primary key constraint
+        /// </summary>
+        [DataMember]
+        public String PKAttributeName
+        {
+            get { return this.pkAttributeIDefName; }
+            set { this.pkAttributeIDefName = value; }
+        }
+        /// <summary>
+        /// Child entity
+        /// </summary>
+        [DataMember]
+        public String FKEntityName
+        {
+            get { return this.fkEntityIDefName; }
+            set { this.fkEntityIDefName = value; }
+        }
+        /// <summary>
+        /// Inherited foreign key
+        /// </summary>
+        [DataMember]
+        public String FKAttributeName
+        {
+            get { return this.fkAttributeIDefName; }
+            set { this.fkAttributeIDefName = value; }
+        }
     }
     /// <summary>
     /// An Attribute's properties identify the physical characterstics and 
@@ -127,14 +201,88 @@ namespace DataRx.SDK.Model
     [DataContract]
     public class AttributeProperty
     {
-        public String Size = String.Empty;
-        public String DBDataType = String.Empty;
-        public String RTDataType = String.Empty;
-        public Boolean IsNullable = true;
-        public Boolean IsPrimaryKey = false;
-        public Boolean IsForeignKey = false;
-        public Boolean IsIndexed = false;
-        public String ConstraintName = String.Empty;
+        /** Class Properties **/
+        private String constraintName = String.Empty;
+        private String size = String.Empty;
+        private String dbDataType = String.Empty;
+        private String rtDataType = String.Empty;
+        private Boolean isNullable = true;
+        private Boolean isPrimaryKey = false;
+        private Boolean isForeignKey = false;
+        private Boolean isIndexed = false;
+
+        /// <summary>
+        /// Dependency constraint name uses an IDefinitionFormatted string to identify 
+        /// named constraints within the super entity.
+        /// </summary>
+        [DataMember]
+        public String ConstraintName
+        {
+            get { return this.constraintName; }
+            set { this.constraintName = value; }
+        }
+        /// <summary>
+        /// Size of attribute data type
+        /// </summary>
+        [DataMember]
+        public String Size
+        {
+            get { return this.size; }
+            set { this.size = value; }
+        }
+        /// <summary>
+        /// Database Data Type
+        /// </summary>
+        public String DBDataType
+        {
+            get { return this.dbDataType; }
+            set { this.dbDataType = value; }
+        }
+        /// <summary>
+        /// Runtime Data Type
+        /// </summary>
+        [DataMember]
+        public String RTDataType
+        {
+            get { return this.rtDataType; }
+            set { this.rtDataType = value; }
+        }
+        /// <summary>
+        /// Allow null values when saving to disk.
+        /// </summary>
+        [DataMember]
+        public Boolean IsNullable
+        {
+            get { return this.isNullable; }
+            set { this.isNullable = value; }
+        }
+        /// <summary>
+        /// Identifies if attribute is a primary key constraint
+        /// </summary>
+        [DataMember]
+        public Boolean IsPrimaryKey
+        {
+            get { return this.isPrimaryKey; }
+            set { this.isPrimaryKey = value; }
+        }
+        /// <summary>
+        /// Identifies if attribute inherits a primary key from another entity
+        /// </summary>
+        [DataMember]
+        public Boolean IsForeignKey
+        {
+            get { return this.isForeignKey; }
+            set { this.isForeignKey = value; }
+        }
+        /// <summary>
+        /// Identifies if attribute is indexed
+        /// </summary>
+        [DataMember]
+        public Boolean IsIndexed
+        {
+            get { return this.isIndexed; }
+            set { this.isIndexed = value; }
+        }        
     }
 
     /// <summary>
@@ -148,12 +296,13 @@ namespace DataRx.SDK.Model
         private String idefName = String.Empty;
         private String publicName = String.Empty;
         private String privateName = String.Empty;
-        
+
         /// <summary>
         /// The serial version UID associates an object with a class object container capable of 
         /// serialization/deserialization. If the class object cannot be found an 
         /// InvalidClassException will be thrown.
         /// </summary>
+        [DataMember]
         public Guid SerialVersionUID
         {
             get { return this.serialVersionUID; }
@@ -165,6 +314,7 @@ namespace DataRx.SDK.Model
         /// and string character data is converted to upper case in accordance 
         /// with A2Z IDEF1X modeling conventions. Example: TAX_KEY
         /// </summary>
+        [DataMember]
         public String IDEFName 
         {
             get { return this.idefName; }
@@ -180,6 +330,7 @@ namespace DataRx.SDK.Model
         /// first letter of each word w/o spaces between words. 
         /// Example: 'TaxKey'
         /// </summary>
+        [DataMember]
         public String PublicName 
         {
             get { return this.publicName; }
@@ -190,6 +341,7 @@ namespace DataRx.SDK.Model
         /// w/o any spaces between words. 
         /// Example: 'taxKey'
         /// </summary>
+        [DataMember]
         public String PrivateName { get; set; }
     }
 }
