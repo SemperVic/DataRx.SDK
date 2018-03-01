@@ -6,7 +6,7 @@ This project will initially use a three point early versioning convention that e
 
 ## Commit Milestones & Notes:
 
-- Feb 2018
+- Feb 2018 (Alpha)
   - Established DataRx.SDK namespace
   - Added Common SDK class model for utilitarian processes
   - Added Composite Entity/Attribute Object Model
