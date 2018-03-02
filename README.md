@@ -3,7 +3,7 @@ The DataRx.SDK project contains a .Net 4.5 CSharp class library project. The Dat
 
 For additional information and documentation, point your browser to [DataRx.IO  Pages](https://datarx.io).
 
-## DataRx.SDK Progress Report
+## DataRx.SDK Progress Briefing
 Currently, DataRx.SDK is in an alpha development stage designing and implementing object model prototypes to facilitate reverse engineering existing databases as well as designing improved Arizona data taxonomies with metadata support.
 
 This project is active and is being worked on everyday. I am not yet ready for collaboration but when I am, I am certainly going to reach out for help. 
@@ -18,10 +18,11 @@ Review [Full Version Log](Docs/VERSION_LOG.md) here as well the three point earl
 
 ## Commit Milestones & Notes:
 
-- Feb 2018
+- March 2018 (Alpha Stage)
   - Established DataRx.SDK namespace
   - Added Common SDK class model for utilitarian processes
   - Added Composite Entity/Attribute Object Model
+  - Added DataRx.SDK.Test project for unit testing suites
 
 ## Third Party Dependencies
 
