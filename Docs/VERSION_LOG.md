@@ -7,6 +7,7 @@ This project will initially use a three point early versioning convention that e
 ## Commit Milestones & Notes:
 - Mar 2018 (Alpha)
   - Establishing project guidelines and documentation
+  - Added Unit Testing Project (DataRx.SDK.Test)
 
 - Feb 2018 (Alpha)
   - Established DataRx.SDK namespace
