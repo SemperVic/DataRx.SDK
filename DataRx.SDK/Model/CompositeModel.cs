@@ -5,13 +5,10 @@
  *  Version:    1.0.1 (Alpha)
  * */
 
+using DataRx.SDK.Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using DataRx.SDK.Common;
 
 namespace DataRx.SDK.Model
 {
@@ -92,7 +89,7 @@ namespace DataRx.SDK.Model
         /// <summary>
         /// Entity Attributes Array
         /// </summary>
-        public List<Attribute> Attributes = new List<Attribute>();
+        public List<EntityAttribute> Attributes = new List<EntityAttribute>();
         /// <summary>
         /// Identifies the Entity/Attribute dependency hierarchy
         /// </summary>
@@ -102,7 +99,7 @@ namespace DataRx.SDK.Model
     /// The A2Z Attribute defines information about the entity that needs to be stored.
     /// </summary>
     [DataContract]
-    public class Attribute : InDefinition
+    public class EntityAttribute : InDefinition
     {
         /** Class Properties **/
         private String attributeLexicon = String.Empty;

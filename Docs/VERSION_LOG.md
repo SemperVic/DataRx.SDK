@@ -5,6 +5,8 @@ This project will initially use a three point early versioning convention that e
 - Current Version: 1.0.1
 
 ## Commit Milestones & Notes:
+- Mar 2018 (Alpha)
+  - Establishing project guidelines and documentation
 
 - Feb 2018 (Alpha)
   - Established DataRx.SDK namespace
