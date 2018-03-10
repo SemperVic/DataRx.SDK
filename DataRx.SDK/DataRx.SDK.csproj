@@ -52,11 +52,25 @@
   <ItemGroup>
     <Compile Include="Common\SDKConstants.cs" />
     <Compile Include="Common\StringHelper.cs" />
+    <Compile Include="Contracts\ICompositeModelProvider.cs" />
+    <Compile Include="Contracts\IDAOFactory.cs" />
+    <Compile Include="Data\COUCH\CompositeObjectDAO.cs" />
+    <Compile Include="Data\COUCH\CompositeObjectORMProvider.cs" />
+    <Compile Include="Data\DAOFactory.cs" />
+    <Compile Include="Data\MONGO\CompositeObjectDAO.cs" />
+    <Compile Include="Data\MONGO\CompositeObjectORMProvider.cs" />
+    <Compile Include="Data\MSSQL\CompositeObjectDAO.cs" />
+    <Compile Include="Data\MSSQL\CompositeObjectORMProvider.cs" />
+    <Compile Include="Data\MYSQL\CompositeObjectDAO.cs" />
+    <Compile Include="Data\MYSQL\CompositeObjectORMProvider.cs" />
+    <Compile Include="Data\SQLITE3\CompositeObjectDAOProvider.cs" />
+    <Compile Include="Data\SQLITE3\CompositeObjectORMProvider.cs" />
     <Compile Include="Model\CompositeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Docs\" />
+    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

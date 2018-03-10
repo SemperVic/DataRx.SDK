@@ -91,6 +91,93 @@
             <param name="value">String to format</param>
             <returns>Formated String</returns>
         </member>
+        <member name="T:DataRx.SDK.Contracts.ICompositeModelProvider">
+            <summary>
+            TODO: Document code commentrary
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ICompositeModelProvider.GetCompositeModelByTNS(System.String)">
+            <summary>
+            Get Composite Model by Taxonomy Namespace returns a collection of composite model objects.
+            </summary>
+            <param name="tnsKey">Taxonomy Namespace</param>
+            <returns>Collection</returns>
+        </member>
+        <member name="T:DataRx.SDK.Contracts.IDAOFactory">
+            <summary>
+            The DAO Factory interface implements the required contracts to access mechanism required to work with 
+            the a specific data source. The data source could be a persistent store like an RDBMS or a DDBMS. 
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.IDAOFactory.GetCompositeModelProvider">
+            <summary>
+            SDK composite object interface provider.
+            </summary>
+            <returns>ICompositeModelProvider</returns>
+        </member>
+        <member name="T:DataRx.SDK.Data.AbstractDataFactory">
+            <summary>
+            Abstract Data Access Object (DAO) Factory
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.AbstractDataFactory.GetDAOFactory(System.String)">
+            <summary>
+            Abstract GetDAOFactory Method.
+            </summary>
+            <param name="daoFactoryProvider">DAO Factory Provider</param>
+            <returns>IDAOFactory</returns>
+        </member>
+        <member name="T:DataRx.SDK.Data.DAOFactory">
+            <summary>
+            DataRx.SDK Concrete Data Access Object Factory
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.DAOFactory.instance">
+            <summary>
+            Early Class Instantiation. No double lock required.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Data.DAOFactory.Instance">
+            <summary>
+            Singleton Instance
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.SQLite3Factory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLite3Factory.GetCompositeModelProvider">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:DataRx.SDK.Data.SQLite3Factory.Instance">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.MSSQLFactory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.MySQLFactory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.CouchDBFactory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.MongoDBFactory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
         <member name="T:DataRx.SDK.Model.CompositeModel">
             <summary>
             AZ Composite Entity, Attribute Object Model.
