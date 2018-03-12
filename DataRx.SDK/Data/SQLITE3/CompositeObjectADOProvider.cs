@@ -58,7 +58,7 @@ namespace DataRx.SDK.Data.SQLITE3
             List<CompositeModel> dtoArray = new List<CompositeModel>();
 
             StringBuilder sb = new StringBuilder(String.Empty);
-            sb.AppendLine(String.Format(SQL.MasterTaxonomyObjectSQL.GetCompositeModelByTNS, tnsKey));
+            sb.AppendLine(String.Format(SQL.TaxonomyObjectSQL.GetCompositeModelByTNS, tnsKey));
             SQLiteCommand sqlCmd = new SQLiteCommand(dbConn);
             sqlCmd.CommandText = sb.ToString();
             sqlCmd.Parameters.Clear();

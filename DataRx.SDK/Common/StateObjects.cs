@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using DataRx.SDK.Model;
+using System.Xml.Serialization;
+using System.IO;
+using System.Globalization;
+using System.Runtime.Serialization;
 
 namespace DataRx.SDK.Common
 {
@@ -49,6 +53,7 @@ namespace DataRx.SDK.Common
     /// no business logic and limit its behavior to activities such as internal 
     /// consistency checking and basic validation.
     /// </summary>
+    [DataContract]
     public partial class DataTransferObject
     {
         /// <summary>
@@ -74,31 +79,38 @@ namespace DataRx.SDK.Common
         /// serialization/deserialization. If the class object cannot be found an 
         /// InvalidClassException will be thrown.
         /// </summary>
+        [DataMember]
         public Guid SerialVersionUID { get; set; }
         /// <summary>
         /// Gets the runtime Type of this current instance 
         /// </summary>
+        [DataMember]
         public String GetType { get; set; }
         /// <summary>
         /// Identifies the DTO Object State
         /// </summary>
+        [DataMember]
         public String ObjectState { get; set; }
         /// <summary>
         /// Identifies the current Universal Coordinated Time. 
         /// </summary>
+        [DataMember]
         public DateTime CurrentUTC;
         /// <summary>
         /// Identifies the current Unix Timestamp
         /// </summary>
+        [DataMember]
         public Int64 CurrentUTS;
         /// <summary>
         /// Identifies the current DateID
         /// </summary>
+        [DataMember]
         public Int64 CurrentDateID;
 
         /// <summary>
         /// Default Constructor
         /// </summary>
+        [DataMember]
         public DataTransferObject()
         {
             SerialVersionUID = new Guid();
@@ -109,73 +121,70 @@ namespace DataRx.SDK.Common
             CurrentDateID = UTS.UtcToDateId(CurrentUTC);            
         }
     }
+    
     /// <summary>
     /// Static Reference to DTO ObjectStates
     /// </summary>
+    [DataContract]
     public class DTOState
     {
         /// <summary>
         /// Indicates the DTO is New and will be inserted into the database when set.
         /// </summary>
+        [DataMember]
         public const String New = "NEW";
         /// <summary>
         /// Indicates the DTO is Clean and unchanged and does not require a set
         /// </summary>
+        [DataMember]
         public const String Clean = "CLEAN";
         /// <summary>
         /// Indicates the DTO is Dirty and will be updated in the database when set.
         /// </summary>
+        [DataMember]
         public const String Dirty = "DIRTY";
     }
-
-    public class Message
-    {
-        public String Type { get; set; }
-        public String Title { get; set; }
-        public String Detail { get; set; }
-    }
-
-    public class MsgType
-    {
-        /// <summary>
-        /// Identifies message as information
-        /// </summary>
-        public const String Info = "INFO";
-        /// <summary>
-        /// Identifies message as a success
-        /// </summary>
-        public const String Success = "SUCCESS";
-        /// <summary>
-        /// Identifies message as a warning
-        /// </summary>
-        public const String Warning = "WARNING";
-        /// <summary>
-        /// Identifies message as an error
-        /// </summary>
-        public const String Error = "ERROR";
-    }
-
+    
+    /// <summary>
+    /// TODO: Code Commentary
+    /// </summary>
     public class ObjectTransformation
     {
-         /// <summary>
+        /// <summary>
         /// Serializes a TaxonomyObject object to a Json string.
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="dto">TaxonomyObject</param>
+        /// <param name="format">(*optional) [None|Indent]</param>
         /// <returns>Returns JavaScript Object Notation string</returns>
-        public String SerializeTaxonomyObjectToJson(TaxonomyObject dto)
+        public String SerializeTaxonomyObjectToJson(TaxonomyObject dto, String format = "None")
         {
-            return JsonConvert.SerializeObject(dto);            
+            if(format.Equals("None"))
+            {
+                return JsonConvert.SerializeObject(dto, Formatting.None, JsonSettings);
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(dto, Formatting.Indented, JsonSettings);
+            }        
         }
+
         /// <summary>
         /// Converts a C# List<TaxonomyObject> class to a JSON string.
         /// </summary>
         /// <param name="dtoArray">List<TaxonomyObject></param>
         /// <returns>Returns JavaScript Object Notation string</returns>
-        public String SerializeTaxonomyObjectCollectionToJson(List<TaxonomyObject> dtoArray)
+        public String SerializeTaxonomyObjectCollectionToJson(List<TaxonomyObject> dtoArray, String format = "None")
         {
-            // Todo, need to look up how this is done again
-            return String.Empty; //JsonConvert.SerializeObject(dto);
+            if(format.Equals("None"))
+            {
+                return JsonConvert.SerializeObject(dtoArray, Formatting.None, JsonSettings);
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(dtoArray, Formatting.Indented, JsonSettings);
+            }
         }
+
         /// <summary>
         /// Deserializes a TaxonomyObject from an xml or json string
         /// </summary>
@@ -190,10 +199,26 @@ namespace DataRx.SDK.Common
         /// <summary>
         /// Converts a Data Transfer Object to a XML string.
         /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="format"></param>
         /// <returns></returns>
         public String SerializeTaxonomyObjectToXml(TaxonomyObject dto)
         {
-            return String.Empty;
+            try
+            {
+                using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
+                using (System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter(stringWriter))
+                {
+                    var serializer = new XmlSerializer(dto.GetType());
+                    serializer.Serialize(writer, dto);
+                    writer.Flush();
+                    return stringWriter.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
         }
 
         /// <summary>
@@ -213,6 +238,14 @@ namespace DataRx.SDK.Common
         {
 
         }
+
+        /// <summary>
+        /// JSON Settings
+        /// </summary>
+        private JsonSerializerSettings JsonSettings = new JsonSerializerSettings
+        {
+            StringEscapeHandling = StringEscapeHandling.EscapeHtml
+        };
     }
 
     /// <summary>
@@ -224,10 +257,12 @@ namespace DataRx.SDK.Common
         /// UnixEpoch Time (1970/01/01 00:00)
         /// </summary>
         public static DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0);
+
         /// <summary>
         /// Returns Unix timestamp of now 
         /// </summary>
         public static Int64 UtsNow = (Int64)(DateTime.UtcNow.Subtract(UnixEpoch)).TotalSeconds;
+
         /// <summary>
         /// Converts UTC DateTime to a Unix timestamp
         /// </summary>
@@ -237,6 +272,7 @@ namespace DataRx.SDK.Common
         {
             return (Int64)Math.Truncate((value.Subtract(UnixEpoch)).TotalSeconds);
         }
+
         /// <summary>
         /// Converts Localized DateTime to a (UTC) Unix timestamp
         /// </summary>
@@ -246,6 +282,7 @@ namespace DataRx.SDK.Common
         {
             return (Int64)Math.Truncate((value.ToUniversalTime().Subtract(UnixEpoch)).TotalSeconds);
         }
+
         /// <summary>
         /// Converts a Unix timestamp to DateTime
         /// </summary>
@@ -255,6 +292,7 @@ namespace DataRx.SDK.Common
         {
             return UnixEpoch.AddSeconds(value);
         }
+
         /// <summary>
         /// Converts Unix Time Stamp to DateID
         /// </summary>
@@ -265,6 +303,7 @@ namespace DataRx.SDK.Common
             DateTime utc = UTS.UtsToDateTime(value);
             return UTS.UtcDateToUTS(new DateTime(utc.Year, utc.Month, utc.Day));
         }
+
         /// <summary>
         /// Converts UTC to DateID
         /// </summary>

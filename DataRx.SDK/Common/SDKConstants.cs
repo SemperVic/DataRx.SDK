@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace DataRx.SDK.Common
 {
     /// <summary>
     /// Data Access Object Factory Providers
     /// </summary>
+    [DataContract]
     public class DAOFactoryProvider
     {
         public const String MSSQL2012 = "MSSQL";
@@ -18,6 +20,9 @@ namespace DataRx.SDK.Common
         public const String COUCH = "COUCH";
     }
 
+    /// <summary>
+    /// Used to help with the C# syntax minutia 
+    /// </summary>
     public static class DotNetCodeConstants
     {
         public static String Tab = "\t";
@@ -49,6 +54,9 @@ namespace DataRx.SDK.Common
         public static String CloseSummaryTag = DocumentComment + "</summary>";
     }
 
+    /// <summary>
+    /// Used to help with the Java syntax minutia 
+    /// </summary>
     public static class JavaCodeConstants
     {
         public static String Tab = "\t";
@@ -80,7 +88,7 @@ namespace DataRx.SDK.Common
         public static String CloseSummaryTag = DocumentComment + "</summary>";
     }
 
-    public static class DataTypeConversion
+    public static class DB2RuntimeDataTypeConversion
     {
         #region .Net Conversion
         /// <summary>
