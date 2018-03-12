@@ -91,6 +91,134 @@
             <param name="value">String to format</param>
             <returns>Formated String</returns>
         </member>
+        <member name="T:DataRx.SDK.Contracts.ICompositeModelProvider">
+            <summary>
+            TODO: Document code commentrary
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ICompositeModelProvider.GetCompositeModelByTNS(System.String)">
+            <summary>
+            Get Composite Model by Taxonomy Namespace returns a collection of composite model objects.
+            </summary>
+            <param name="tnsKey">Taxonomy Namespace</param>
+            <returns>Collection</returns>
+        </member>
+        <member name="T:DataRx.SDK.Contracts.IDAOFactory">
+            <summary>
+            The DAO Factory interface implements the required contracts to access mechanism required to work with 
+            the a specific data source. The data source could be a persistent store like an RDBMS or a DDBMS. 
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.IDAOFactory.GetCompositeModelProvider">
+            <summary>
+            SDK composite object interface provider.
+            </summary>
+            <returns>ICompositeModelProvider</returns>
+        </member>
+        <member name="T:DataRx.SDK.Data.AbstractDataFactory">
+            <summary>
+            Abstract Data Access Object (DAO) Factory
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.AbstractDataFactory.GetDAOFactory(System.String)">
+            <summary>
+            Abstract GetDAOFactory Method.
+            </summary>
+            <param name="daoFactoryProvider">DAO Factory Provider</param>
+            <returns>IDAOFactory</returns>
+        </member>
+        <member name="T:DataRx.SDK.Data.DAOFactory">
+            <summary>
+            DataRx.SDK Concrete Data Access Object Factory
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.DAOFactory.instance">
+            <summary>
+            Early Class Instantiation. No double lock required.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Data.DAOFactory.Instance">
+            <summary>
+            Singleton Instance
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.SQLite3Factory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Data.SQLite3Factory.Instance">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLite3Factory.GetCompositeModelProvider">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DataRx.SDK.Data.MSSQLFactory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.MySQLFactory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.CouchDBFactory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.MongoDBFactory">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.dbConn">
+            <summary>
+            SQLite DB Connection Object
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.instance">
+            <summary>
+            Early Class Instantiation. 
+            </summary>
+            <remarks>Static settings holds only one instance of this class. Double lock not required.</remarks>
+        </member>
+        <member name="P:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.Instance">
+            <summary>
+            Sinleton Constructor
+            </summary>
+            <remarks>
+            Single point of entry
+            </remarks>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.#ctor">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.GetCompositeModelByTNS(System.String)">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+            <param name="tnsKey"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DataRx.SDK.Data.SQLITE3.SQL.MasterTaxonomyObjectSQL">
+            <summary>
+            TODO: Commentary
+            </summary>
+        </member>
         <member name="T:DataRx.SDK.Model.CompositeModel">
             <summary>
             AZ Composite Entity, Attribute Object Model.
@@ -101,11 +229,6 @@
         </member>
         <member name="F:DataRx.SDK.Model.CompositeModel.className">
             Class Properties *
-        </member>
-        <member name="F:DataRx.SDK.Model.CompositeModel.Entities">
-            <summary>
-            Composite Model Entities
-            </summary>
         </member>
         <member name="P:DataRx.SDK.Model.CompositeModel.ClassName">
             <summary>
@@ -123,6 +246,11 @@
             Data Access Object provider
             </summary>
         </member>
+        <member name="F:DataRx.SDK.Model.CompositeModel.Entities">
+            <summary>
+            Composite Model Entities
+            </summary>
+        </member>
         <member name="T:DataRx.SDK.Model.Entity">
             <summary>
             The A2Z Entity Object is an independent container class used 
@@ -131,57 +259,8 @@
             stored in a no-sql document database.
             </summary>
         </member>
-        <member name="T:DataRx.SDK.Model.InDefinition">
-            <summary>
-            Integration Definition Prototype Class
-            This is not an interface/contract class.
-            </summary>
-        </member>
-        <member name="F:DataRx.SDK.Model.InDefinition.serialVersionUID">
-            Class Properties *
-        </member>
-        <member name="P:DataRx.SDK.Model.InDefinition.SerialVersionUID">
-            <summary>
-            The serial version UID associates an object with a class object container capable of 
-            serialization/deserialization. If the class object cannot be found an 
-            InvalidClassException will be thrown.
-            </summary>
-        </member>
-        <member name="P:DataRx.SDK.Model.InDefinition.IDEFName">
-            <summary>
-            Integration Definition (ref: IDEF) is used to logically 
-            identify the object's namespace taxonomy. No spaces are allowed 
-            and string character data is converted to upper case in accordance 
-            with A2Z IDEF1X modeling conventions. Example: TAX_KEY
-            </summary>
-        </member>
-        <member name="P:DataRx.SDK.Model.InDefinition.PublicName">
-            <summary>
-            Logical public object name. This is usually in sentence format 
-            otherwise refered to as Pascal Casing. Pascal capitalizes the 
-            first letter of each word w/o spaces between words. 
-            Example: 'TaxKey'
-            </summary>
-        </member>
-        <member name="P:DataRx.SDK.Model.InDefinition.PrivateName">
-            <summary>
-            Logcal private object name. This is usually in a camel case format 
-            w/o any spaces between words. 
-            Example: 'taxKey'
-            </summary>
-        </member>
         <member name="F:DataRx.SDK.Model.Entity.entityLexicon">
             Class Properties *
-        </member>
-        <member name="F:DataRx.SDK.Model.Entity.Attributes">
-            <summary>
-            Entity Attributes Array
-            </summary>
-        </member>
-        <member name="F:DataRx.SDK.Model.Entity.Dependencies">
-            <summary>
-            Identifies the Entity/Attribute dependency hierarchy
-            </summary>
         </member>
         <member name="P:DataRx.SDK.Model.Entity.EntityLexicon">
             <summary>
@@ -193,6 +272,16 @@
             Short description describing the entity in 512 characters or less
             </summary>
         </member>
+        <member name="F:DataRx.SDK.Model.Entity.Attributes">
+            <summary>
+            Entity Attributes Array
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.Entity.Dependencies">
+            <summary>
+            Identifies the Entity/Attribute dependency hierarchy
+            </summary>
+        </member>
         <member name="T:DataRx.SDK.Model.EntityAttribute">
             <summary>
             The A2Z Attribute defines information about the entity that needs to be stored.
@@ -200,12 +289,6 @@
         </member>
         <member name="F:DataRx.SDK.Model.EntityAttribute.attributeLexicon">
             Class Properties *
-        </member>
-        <member name="F:DataRx.SDK.Model.EntityAttribute.Property">
-            <summary>
-            An Attribute's properties identify the physical characterstics and 
-            constraints for of the attribute specified.
-            </summary>
         </member>
         <member name="P:DataRx.SDK.Model.EntityAttribute.AttributeLexicon">
             <summary>
@@ -217,6 +300,12 @@
             <summary>
             Short description describing the entity in 512 characters or less.
             Example: 'Primary key constraint.'
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.EntityAttribute.Property">
+            <summary>
+            An Attribute's properties identify the physical characterstics and 
+            constraints for of the attribute specified.
             </summary>
         </member>
         <member name="T:DataRx.SDK.Model.ObjectDependency">
@@ -301,6 +390,45 @@
         <member name="P:DataRx.SDK.Model.AttributeProperty.IsIndexed">
             <summary>
             Identifies if attribute is indexed
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Model.InDefinition">
+            <summary>
+            Integration Definition Prototype Class
+            This is not an interface/contract class.
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Model.InDefinition.serialVersionUID">
+            Class Properties *
+        </member>
+        <member name="P:DataRx.SDK.Model.InDefinition.SerialVersionUID">
+            <summary>
+            The serial version UID associates an object with a class object container capable of 
+            serialization/deserialization. If the class object cannot be found an 
+            InvalidClassException will be thrown.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.InDefinition.IDEFName">
+            <summary>
+            Integration Definition (ref: IDEF) is used to logically 
+            identify the object's namespace taxonomy. No spaces are allowed 
+            and string character data is converted to upper case in accordance 
+            with A2Z IDEF1X modeling conventions. Example: TAX_KEY
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.InDefinition.PublicName">
+            <summary>
+            Logical public object name. This is usually in sentence format 
+            otherwise refered to as Pascal Casing. Pascal capitalizes the 
+            first letter of each word w/o spaces between words. 
+            Example: 'TaxKey'
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.InDefinition.PrivateName">
+            <summary>
+            Logcal private object name. This is usually in a camel case format 
+            w/o any spaces between words. 
+            Example: 'taxKey'
             </summary>
         </member>
     </members>

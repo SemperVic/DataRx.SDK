@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\SDKConstants.cs" />
+    <Compile Include="Common\StateObjects.cs" />
     <Compile Include="Common\StringHelper.cs" />
     <Compile Include="Contracts\ICompositeModelProvider.cs" />
     <Compile Include="Contracts\IDAOFactory.cs" />
@@ -86,7 +87,9 @@
     <Compile Include="Data\SQLITE3\DataSourceObject.cs" />
     <Compile Include="Data\SQLITE3\SQL\MasterTaxonomyObjectBase.cs" />
     <Compile Include="Data\SQLITE3\SQL\MetadataCrud.cs" />
+    <Compile Include="Data\SQLITE3\TaxonomyObjectADOProvider.cs" />
     <Compile Include="Model\CompositeModel.cs" />
+    <Compile Include="Model\TaxonomyObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
