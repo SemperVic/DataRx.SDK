@@ -25,7 +25,7 @@ namespace DataRx.SDK.Data.SQLITE3
     /// <remarks>TaxonomyObject DTOs are stored in MDR_TAXONOMY_OBJECT</remarks>
     public sealed class TaxonomyObjectADOProvider : ITaxonomyObjectProvider
     {
-        #region Standard Singleton Initialization
+        #region Standard Singleton Initialization and pre-processors
         /// <summary>
         /// SQLite DB Connection Object
         /// </summary>
@@ -53,9 +53,30 @@ namespace DataRx.SDK.Data.SQLITE3
         /// </summary>
         private TaxonomyObjectADOProvider()
         {
-            //logger.Info("Initializing MetadataADOProvider");
-            SQL3DBase dbase = new SQL3DBase();
-            dbConn = dbase.DBConnection();
+            // Logger
+        }
+
+        /// <summary>
+        /// While class instantiation is singleton, setting the Data Source is 
+        /// not static. In the event you would like to connect to an a2zdb that 
+        /// is not your default data source, you can pass in a DataSource object 
+        /// to open a thread to the a2zdb datasource of your choice within the 
+        /// paramaters of supported API's and protocols. This method is 
+        /// particularly useful when one wants to connect to a remote a2zdb 
+        /// instances from a local or internal thin client. This is done when you 
+        /// make your singleton service call
+        /// </summary>
+        /// <param name="ds"></param>
+        public void SetDataSource(DataSource ds = null)
+        {
+            if (ds.Equals(null))
+            {
+                dbConn.ConnectionString = Settings.Default.CNString;
+            }
+            else
+            {
+                dbConn.ConnectionString = ds.CNString;
+            }
         }
         #endregion
 

@@ -43,5 +43,10 @@ namespace DataRx.SDK.Common
         /// </summary>
         [DataMember]
         public String DBFactory { get; set; }
+        /// <summary>
+        /// Connection String
+        /// </summary>
+        [DataMember]
+        public String CNString { get; set; }
     }
 }

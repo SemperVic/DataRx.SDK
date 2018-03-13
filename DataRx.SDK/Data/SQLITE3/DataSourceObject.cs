@@ -9,54 +9,54 @@ namespace DataRx.SDK.Data.SQLITE3
 {
     public class SQL3DBase
     {
-        public Boolean TestDatabase()
-        {
-            Boolean isDatabaseDefined = false;
-            SQL3DBase dbase = new SQL3DBase();
-            SQLiteConnection dbConn = dbase.DBConnection();
-            try
-            {
-                dbConn.Open();
-                SQLiteCommand cmd = new SQLiteCommand(dbConn);
-                cmd.CommandText = "SELECT * FROM CORE_VERSION_INFO";
-                cmd.ExecuteReader();
-                isDatabaseDefined = true;
-            }
-            catch (Exception e)
-            {
-                //Message noDbMsg = new Message();
-                //noDbMsg.Type = MsgType.Warning;
-                //noDbMsg.Title = "Database Not Defined";
-                //noDbMsg.Detail = "The Arizona database file does not exist.";
-                //// Attempting to Create Database
-                //try
-                //{
-                //    Message dbMsg = dbase.CreateDatabase();
-                //    List<Message> tableMsgs = dbase.CreateTables();
-                //    isDatabaseDefined = true;
-                //}
-                //catch (Exception ex)
-                //{
-                //    Message errorMsg = new Message();
-                //    errorMsg.Type = MsgType.Warning;
-                //    errorMsg.Title = "SQLite Error";
-                //    errorMsg.Detail = "The Arizona database could not be created. " + ex.Message;
-                //}
-            }
-            finally
-            {
-                dbConn.Close();
-            }
+        //public Boolean TestDatabase()
+        //{
+        //    Boolean isDatabaseDefined = false;
+        //    SQL3DBase dbase = new SQL3DBase();
+        //    SQLiteConnection dbConn = dbase.DataConnection();
+        //    try
+        //    {
+        //        dbConn.Open();
+        //        SQLiteCommand cmd = new SQLiteCommand(dbConn);
+        //        cmd.CommandText = "SELECT * FROM CORE_VERSION_INFO";
+        //        cmd.ExecuteReader();
+        //        isDatabaseDefined = true;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        //Message noDbMsg = new Message();
+        //        //noDbMsg.Type = MsgType.Warning;
+        //        //noDbMsg.Title = "Database Not Defined";
+        //        //noDbMsg.Detail = "The Arizona database file does not exist.";
+        //        //// Attempting to Create Database
+        //        //try
+        //        //{
+        //        //    Message dbMsg = dbase.CreateDatabase();
+        //        //    List<Message> tableMsgs = dbase.CreateTables();
+        //        //    isDatabaseDefined = true;
+        //        //}
+        //        //catch (Exception ex)
+        //        //{
+        //        //    Message errorMsg = new Message();
+        //        //    errorMsg.Type = MsgType.Warning;
+        //        //    errorMsg.Title = "SQLite Error";
+        //        //    errorMsg.Detail = "The Arizona database could not be created. " + ex.Message;
+        //        //}
+        //    }
+        //    finally
+        //    {
+        //        dbConn.Close();
+        //    }
 
-            return isDatabaseDefined;
-        }
+        //    return isDatabaseDefined;
+        //}
 
-        public SQLiteConnection DBConnection()
-        {
-            String connectString = @"data source=C:\Users\Sean\Development\Projects\Arizona\Arizona.Portal\App_Data\ARIZONA.db3";
-            SQLiteConnection dbConn = new SQLiteConnection(connectString);
-            return dbConn;
-        }
+        //public SQLiteConnection DataConnection()
+        //{
+        //    String connectString = @"data source=C:\Users\Sean\Development\Projects\Arizona\Arizona.Portal\App_Data\ARIZONA.db3";
+        //    SQLiteConnection dbConn = new SQLiteConnection(connectString);
+        //    return dbConn;
+        //}
 
         //public Message CreateDatabase()
         //{

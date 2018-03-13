@@ -20,5 +20,8 @@
     <Setting Name="DBFactory" Type="System.String" Scope="Application">
       <Value Profile="(Default)">SQLITE3</Value>
     </Setting>
+    <Setting Name="CNString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

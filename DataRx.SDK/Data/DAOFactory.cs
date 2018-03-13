@@ -17,8 +17,10 @@ namespace DataRx.SDK.Data
         /// Abstract GetDAOFactory Method.
         /// </summary>
         /// <param name="daoFactoryProvider">DAO Factory Provider</param>
-        /// <returns>IDAOFactory</returns>
-        public abstract IDAOFactory GetDAOFactory(String daoFactoryProvider);
+        /// <param name="dataSource">Configured DataSource</param>
+        /// <returns></returns>
+        public abstract IDAOFactory GetDAOFactory(String daoFactoryProvider, DataSource dataSource = null);
+        
     }
 
     /// <summary>
@@ -37,27 +39,55 @@ namespace DataRx.SDK.Data
         {
             get { return instance; }        
         }
-
-        public override IDAOFactory GetDAOFactory(String daoFactoryProvider)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="daoFactoryProvider"></param>
+        /// <param name="dataSource"></param>
+        /// <returns></returns>
+        public override IDAOFactory GetDAOFactory(String daoFactoryProvider, DataSource dataSource = null)
         {
-            switch (daoFactoryProvider)
+            if(dataSource.Equals(null))
             {
-                case DAOFactoryProvider.SQLITE3:
-                    return SQLite3Factory.Instance;
-                case DAOFactoryProvider.MSSQL2012:
-                    return MSSQLFactory.Instance;
-                case DAOFactoryProvider.MYSQL:
-                    return MySQLFactory.Instance;
-                case DAOFactoryProvider.COUCH:
-                    return CouchDBFactory.Instance;
-                case DAOFactoryProvider.MONGO:
-                    return MongoDBFactory.Instance;
-                default:
-                    throw new NotImplementedException("The '" + daoFactoryProvider + "' is not implemented in A2Z.SDK");
+                switch (daoFactoryProvider)
+                {
+                    case DAOFactoryProvider.SQLITE3:
+                        return SQLite3Factory.Instance;
+                    case DAOFactoryProvider.MSSQL2012:
+                        return MSSQLFactory.Instance;
+                    case DAOFactoryProvider.MYSQL:
+                        return MySQLFactory.Instance;
+                    case DAOFactoryProvider.COUCH:
+                        return CouchDBFactory.Instance;
+                    case DAOFactoryProvider.MONGO:
+                        return MongoDBFactory.Instance;
+                    default:
+                        throw new NotImplementedException("The '" + daoFactoryProvider + "' is not implemented in A2Z.SDK");
+                }
+            }
+            else
+            {
+                switch (daoFactoryProvider)
+                {
+                    case DAOFactoryProvider.SQLITE3:
+                        var factory = SQLite3Factory.Instance;
+        
+                        return SQLite3Factory.Instance;
+                    case DAOFactoryProvider.MSSQL2012:
+                        return MSSQLFactory.Instance;
+                    case DAOFactoryProvider.MYSQL:
+                        return MySQLFactory.Instance;
+                    case DAOFactoryProvider.COUCH:
+                        return CouchDBFactory.Instance;
+                    case DAOFactoryProvider.MONGO:
+                        return MongoDBFactory.Instance;
+                    default:
+                        throw new NotImplementedException("The '" + daoFactoryProvider + "' is not implemented in A2Z.SDK");
+                }
             }
         }
     }
-
+    
     /// <summary>
     /// TODO: Code Commentary
     /// </summary>
@@ -75,9 +105,18 @@ namespace DataRx.SDK.Data
         /// TODO: Code Commentary
         /// </summary>
         /// <returns></returns>
-        public ICompositeModelProvider GetCompositeModelProvider()
+        public ICompositeModelProvider GetCompositeModelProvider(DataSource ds = null)
         {
-            return SQLITE3.CompositeObjectDAOProvider.Instance;
+            ICompositeModelProvider sqliteInterface = SQLITE3.CompositeObjectDAOProvider.Instance;
+            sqliteInterface.SetDataSource(ds);
+            return sqliteInterface;
+        }
+
+        public ITaxonomyObjectProvider GetTaxonomyObjectProvider(DataSource ds = null)
+        {
+            ITaxonomyObjectProvider sqliteInterface = SQLITE3.TaxonomyObjectDAOProvider.Instance;
+            sqliteInterface.SetDataSource(ds);
+            return sqliteInterface;
         }
     }
 
@@ -87,15 +126,24 @@ namespace DataRx.SDK.Data
     public sealed class MSSQLFactory : IDAOFactory
     {
         private static MSSQLFactory instance = new MSSQLFactory();
-
+        /// <summary>
+        /// TODO: Code Commentary
+        /// </summary>
         public static MSSQLFactory Instance
         {
             get { return instance; }
         }
 
-        public ICompositeModelProvider GetCompositeModelProvider()
+        public ICompositeModelProvider GetCompositeModelProvider(DataSource ds = null)
         {
             throw new NotImplementedException();
+        }
+
+        public ITaxonomyObjectProvider GetTaxonomyObjectProvider(DataSource ds = null)
+        {
+            ITaxonomyObjectProvider sqliteInterface = SQLITE3.TaxonomyObjectDAOProvider.Instance;
+            sqliteInterface.SetDataSource(ds);
+            return sqliteInterface;
         }
     }
 
@@ -111,9 +159,16 @@ namespace DataRx.SDK.Data
             get { return instance; }
         }
 
-        public ICompositeModelProvider GetCompositeModelProvider()
+        public ICompositeModelProvider GetCompositeModelProvider(DataSource ds = null)
         {
             throw new NotImplementedException();
+        }
+
+        public ITaxonomyObjectProvider GetTaxonomyObjectProvider(DataSource ds = null)
+        {
+            ITaxonomyObjectProvider sqliteInterface = SQLITE3.TaxonomyObjectDAOProvider.Instance;
+            sqliteInterface.SetDataSource(ds);
+            return sqliteInterface;
         }
     }
 
@@ -129,9 +184,16 @@ namespace DataRx.SDK.Data
             get { return instance; }
         }
 
-        public ICompositeModelProvider GetCompositeModelProvider()
+        public ICompositeModelProvider GetCompositeModelProvider(DataSource ds = null)
         {
             throw new NotImplementedException();
+        }
+
+        public ITaxonomyObjectProvider GetTaxonomyObjectProvider(DataSource ds = null)
+        {
+            ITaxonomyObjectProvider sqliteInterface = SQLITE3.TaxonomyObjectDAOProvider.Instance;
+            sqliteInterface.SetDataSource(ds);
+            return sqliteInterface;
         }
     }
 
@@ -147,9 +209,16 @@ namespace DataRx.SDK.Data
             get { return instance; }
         }
 
-        public ICompositeModelProvider GetCompositeModelProvider()
+        public ICompositeModelProvider GetCompositeModelProvider(DataSource ds = null)
         {
             throw new NotImplementedException();
+        }
+
+        public ITaxonomyObjectProvider GetTaxonomyObjectProvider(DataSource ds = null)
+        {
+            ITaxonomyObjectProvider sqliteInterface = SQLITE3.TaxonomyObjectDAOProvider.Instance;
+            sqliteInterface.SetDataSource(ds);
+            return sqliteInterface;
         }
     }
 }

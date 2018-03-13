@@ -16,7 +16,7 @@ namespace DataRx.SDK.Service
     /// </summary>
     public sealed class TaxonomyObjectServiceProvider : ITaxonomyObjectProvider
     {
-         #region Standard Singleton Initialization
+        #region Standard Singleton Initialization
         /// <summary>
         /// Early Class Instantiation. 
         /// </summary>
@@ -37,9 +37,9 @@ namespace DataRx.SDK.Service
         /// <summary>
         /// Private constructor instantiates the SQLiteConnection object
         /// </summary>
-        private TaxonomyObjectServiceProvider()
+        private TaxonomyObjectServiceProvider(DataSource ds = null)
         {
-            // Set Data Source Object
+            
             this.config = Settings.Default;
             this.dataSource.DSN = Settings.Default.DSN;
             this.dataSource.DBHost = Settings.Default.DBHost;
@@ -47,10 +47,22 @@ namespace DataRx.SDK.Service
             this.dataSource.DBUser = Settings.Default.DBUser;
             this.dataSource.DBPassword = Settings.Default.DBPassword;
             this.dataSource.DBFactory = Settings.Default.DBFactory;
+            this.dataSource.CNString = Settings.Default.CNString;
             // Set the factory
-            this.factory = DAOFactory.Instance.GetDAOFactory(this.config.DBFactory);
+            this.factory = DAOFactory.Instance.GetDAOFactory(this.dataSource.DBFactory, ds);
             //logger.Info("Initializing MetadataADOProvider");
-        }        
+            
+
+        }
+        /// <summary>
+        /// Overide DataRx.SDK.TaxonomyObjectServiceProvider(DataSource ds).Instance 
+        /// to call the stack using another configured DataSource
+        /// </summary>
+        /// <param name="ds">DataSource</param>
+        public void SetDataSource(DataSource ds)
+        {
+            throw new NotImplementedException("Overide DataRx.SDK.TaxonomyObjectServiceProvider(DataSource ds).Instance to call the stack using another DataSource");
+        }
         #endregion
         
         private DataSource dataSource;
@@ -62,20 +74,6 @@ namespace DataRx.SDK.Service
         /// DAO Factory 
         /// </summary>
         private IDAOFactory factory;
-
-        public void ChangeDSN(DataSource ds)
-        {
-            this.dataSource.DSN = ds.DSN;
-            this.dataSource.DBHost = ds.DBHost;
-            this.dataSource.DBCatalog = ds.DBCatalog;
-            this.dataSource.DBUser = ds.DBUser;
-            this.dataSource.DBPassword = ds.DBPassword;
-            this.dataSource.DBFactory = ds.DBFactory;
-            // Set the factory
-            this.factory = DAOFactory.Instance.GetDAOFactory(this.dataSource.DBFactory);
-            //We need to add an optional datasource attribute to all data class calls
-        }
-
 
         /// <summary>
         /// 

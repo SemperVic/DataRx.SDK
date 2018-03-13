@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataRx.SDK.Common;
 
 namespace DataRx.SDK.Contracts
 {
@@ -16,6 +17,13 @@ namespace DataRx.SDK.Contracts
         /// SDK composite object interface provider.
         /// </summary>
         /// <returns>ICompositeModelProvider</returns>
-        ICompositeModelProvider GetCompositeModelProvider();
+        ICompositeModelProvider GetCompositeModelProvider(DataSource ds = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <returns></returns>
+        ITaxonomyObjectProvider GetTaxonomyObjectProvider(DataSource ds = null);
     }
 }

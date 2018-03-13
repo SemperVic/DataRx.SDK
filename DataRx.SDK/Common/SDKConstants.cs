@@ -13,10 +13,25 @@ namespace DataRx.SDK.Common
     [DataContract]
     public class DAOFactoryProvider
     {
+        /// <summary>
+        /// Microsoft SQL Server
+        /// </summary>
         public const String MSSQL2012 = "MSSQL";
+        /// <summary>
+        /// SQLite 3 Database
+        /// </summary>
         public const String SQLITE3 = "SQLITE3";
+        /// <summary>
+        /// MySQL Database
+        /// </summary>
         public const String MYSQL = "MYSQL";
+        /// <summary>
+        /// Mongo DB Document Database
+        /// </summary>
         public const String MONGO = "MONGO";
+        /// <summary>
+        /// CouchDB Document Database
+        /// </summary>
         public const String COUCH = "COUCH";
     }
 

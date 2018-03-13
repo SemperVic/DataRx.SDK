@@ -85,7 +85,7 @@ namespace DataRx.SDK.Common
         /// Gets the runtime Type of this current instance 
         /// </summary>
         [DataMember]
-        public String GetType { get; set; }
+        public String GetClassType { get; set; }
         /// <summary>
         /// Identifies the DTO Object State
         /// </summary>
@@ -110,12 +110,11 @@ namespace DataRx.SDK.Common
         /// <summary>
         /// Default Constructor
         /// </summary>
-        [DataMember]
         public DataTransferObject()
         {
             SerialVersionUID = new Guid();
             ObjectState = DTOState.New;
-            GetType = this.GetType().ToString();
+            GetClassType = this.GetType().ToString();
             CurrentUTC = DateTime.UtcNow;
             CurrentUTS = UTS.UtsNow;
             CurrentDateID = UTS.UtcToDateId(CurrentUTC);            
@@ -169,9 +168,9 @@ namespace DataRx.SDK.Common
         }
 
         /// <summary>
-        /// Converts a C# List<TaxonomyObject> class to a JSON string.
+        /// Converts a C# Collection of TaxonomyObjects to a JSON string.
         /// </summary>
-        /// <param name="dtoArray">List<TaxonomyObject></param>
+        /// <param name="dtoArray">Collection of TaxonomyObjects</param>
         /// <returns>Returns JavaScript Object Notation string</returns>
         public String SerializeTaxonomyObjectCollectionToJson(List<TaxonomyObject> dtoArray, String format = "None")
         {
@@ -199,9 +198,8 @@ namespace DataRx.SDK.Common
         /// <summary>
         /// Converts a Data Transfer Object to a XML string.
         /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="format"></param>
-        /// <returns></returns>
+        /// <param name="dto">TaxonomyObject</param>
+        /// <returns>TaxonomyObject</returns>
         public String SerializeTaxonomyObjectToXml(TaxonomyObject dto)
         {
             try
