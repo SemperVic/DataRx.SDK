@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using DataRx.SDK.Contracts;
 using DataRx.SDK.Model;
+using DataRx.SDK.Common;
 
 namespace DataRx.SDK.Data.SQLITE3
 {
@@ -43,10 +44,19 @@ namespace DataRx.SDK.Data.SQLITE3
         private CompositeObjectADOProvider()
         {
             //logger.Info("Initializing MetadataADOProvider");
-            SQL3DBase dbase = new SQL3DBase();
-            dbConn = dbase.DBConnection();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ds"></param>
+        public void SetDataSource(DataSource ds)
+        {
+            throw new NotImplementedException();
         }
         #endregion
+
+
 
         /// <summary>
         /// TODO: Code Commentary
@@ -103,8 +113,6 @@ namespace DataRx.SDK.Data.SQLITE3
 
             //throw new NotImplementedException();
         }
-
         
-
     }
 }

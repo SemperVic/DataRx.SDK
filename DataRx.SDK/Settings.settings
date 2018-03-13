@@ -20,9 +20,12 @@
     <Setting Name="DBFactory" Type="System.String" Scope="Application">
       <Value Profile="(Default)">SQLITE3</Value>
     </Setting>
+<<<<<<< HEAD
     <Setting Name="DBTrust" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
+=======
+>>>>>>> adc3091fc4677be0f24b5018d9af9a23bd49cd56
     <Setting Name="CNString" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>

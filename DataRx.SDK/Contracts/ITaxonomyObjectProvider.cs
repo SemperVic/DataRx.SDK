@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataRx.SDK.Common;
 using DataRx.SDK.Model;
 
 namespace DataRx.SDK.Contracts
@@ -13,6 +14,11 @@ namespace DataRx.SDK.Contracts
 	/// </summary>
     public interface ITaxonomyObjectProvider
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ds"></param>
+        void SetDataSource(DataSource ds);
         /// <summary>
         /// Interface contract method stub returns TaxonomyObject By TaxKey
         /// </summary>

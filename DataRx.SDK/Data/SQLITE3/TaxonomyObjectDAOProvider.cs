@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataRx.SDK.Common;
 using DataRx.SDK.Contracts;
 using DataRx.SDK.Model;
 
@@ -10,7 +11,7 @@ namespace DataRx.SDK.Data.SQLITE3
 {
     class TaxonomyObjectDAOProvider : ITaxonomyObjectProvider
     {
-        #region Standard Singleton Initialization
+        #region Standard Singleton Initialization and pre-processors
         /// <summary>
         /// Early Class Instantiation. 
         /// </summary>
@@ -34,6 +35,15 @@ namespace DataRx.SDK.Data.SQLITE3
         private TaxonomyObjectDAOProvider()
         {
             //logger.Info("Initializing MetadataADOProvider");
+        }
+
+        /// <summary>
+        /// TODO: Code Commentary
+        /// </summary>
+        /// <param name="ds">DataSource</param>
+        public void SetDataSource(DataSource ds)
+        {
+            TaxonomyObjectADOProvider.Instance.SetDataSource(ds);
         }
         #endregion
 

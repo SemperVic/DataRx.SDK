@@ -44,6 +44,7 @@ namespace DataRx.SDK.Common
         [DataMember]
         public String DBFactory { get; set; }
         /// <summary>
+<<<<<<< HEAD
         /// Does a database trust exist
         /// </summary>
         [DataMember]
@@ -54,5 +55,11 @@ namespace DataRx.SDK.Common
         [DataMember]
         public String CNString { get; set; }
 
+=======
+        /// Connection String
+        /// </summary>
+        [DataMember]
+        public String CNString { get; set; }
+>>>>>>> adc3091fc4677be0f24b5018d9af9a23bd49cd56
     }
 }
