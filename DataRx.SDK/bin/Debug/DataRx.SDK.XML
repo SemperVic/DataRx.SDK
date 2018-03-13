@@ -4,52 +4,312 @@
         <name>DataRx.SDK</name>
     </assembly>
     <members>
+        <member name="T:DataRx.SDK.Common.DataSource">
+            <summary>
+            Represents a Database Connection Object
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataSource.DSN">
+            <summary>
+            Data Source Name
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataSource.DBHost">
+            <summary>
+            Database Host
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataSource.DBCatalog">
+            <summary>
+            Database / Catalog
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataSource.DBUser">
+            <summary>
+            User Name w/DB Admin rights
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataSource.DBPassword">
+            <summary>
+            Password - this value will be encrypted
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataSource.DBFactory">
+            <summary>
+            Database Factory implementation. ref: DataRx.SDK.Common.DAOFactoryProvider
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataSource.DBTrust">
+            <summary>
+            Does a database trust exist
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataSource.CNString">
+            <summary>
+            Database Connection String
+            </summary>
+        </member>
         <member name="T:DataRx.SDK.Common.DAOFactoryProvider">
             <summary>
             Data Access Object Factory Providers
             </summary>
         </member>
-        <member name="M:DataRx.SDK.Common.DataTypeConversion.MSSQLToDotNet(System.String)">
+        <member name="T:DataRx.SDK.Common.DotNetCodeConstants">
+            <summary>
+            Used to help with the C# syntax minutia 
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Common.JavaCodeConstants">
+            <summary>
+            Used to help with the Java syntax minutia 
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Common.DB2RuntimeDataTypeConversion.MSSQLToDotNet(System.String)">
             <summary>
             Converts MS SQL Server data type to .Net data type
             </summary>
             <param name="value">SQL Server Data Type</param>
             <returns>.Net Data Type</returns>
         </member>
-        <member name="M:DataRx.SDK.Common.DataTypeConversion.SQLiteToDotNet(System.String)">
+        <member name="M:DataRx.SDK.Common.DB2RuntimeDataTypeConversion.SQLiteToDotNet(System.String)">
             <summary>
             Converts SQLite3 data types to .Net data types
             </summary>
             <param name="value">SQLite Data Type</param>
             <returns>.Net Data Type</returns>
         </member>
-        <member name="M:DataRx.SDK.Common.DataTypeConversion.MySqlToDotNet(System.String)">
+        <member name="M:DataRx.SDK.Common.DB2RuntimeDataTypeConversion.MySqlToDotNet(System.String)">
             <summary>
             Converts MySQL data types to .Net data types
             </summary>
             <param name="value">SQLite Data Type</param>
             <returns>.Net Data Type</returns>
         </member>
-        <member name="M:DataRx.SDK.Common.DataTypeConversion.MSSQLToJava(System.String)">
+        <member name="M:DataRx.SDK.Common.DB2RuntimeDataTypeConversion.MSSQLToJava(System.String)">
             <summary>
             Converts MS SQL Server data type to .Net data type
             </summary>
             <param name="value">SQL Server Data Type</param>
             <returns>.Net Data Type</returns>
         </member>
-        <member name="M:DataRx.SDK.Common.DataTypeConversion.SQLiteToJava(System.String)">
+        <member name="M:DataRx.SDK.Common.DB2RuntimeDataTypeConversion.SQLiteToJava(System.String)">
             <summary>
             Converts SQLite3 data types to .Net data types
             </summary>
             <param name="value">SQLite Data Type</param>
             <returns>.Net Data Type</returns>
         </member>
-        <member name="M:DataRx.SDK.Common.DataTypeConversion.MySqlToJava(System.String)">
+        <member name="M:DataRx.SDK.Common.DB2RuntimeDataTypeConversion.MySqlToJava(System.String)">
             <summary>
             Converts MySQL data types to .Net data types
             </summary>
             <param name="value">SQLite Data Type</param>
             <returns>.Net Data Type</returns>
+        </member>
+        <member name="T:DataRx.SDK.Common.DTOEventHandler">
+            <summary>
+            DTOEvent delegate signature that is called when a DTOEvent is triggered.
+            </summary>
+            <remarks>The standard Arizona call stack does not natively listen for 
+            change events. The reason for this is because all of the interface 
+            points of entry exist in stateless environments. Accordingly, call 
+            stack ADO/ORM mappings rely on the object's property named "ObjectState". 
+            Should you ever use these libraries for desktop or command line 
+            processes you can tie your event listener to this handler in-lieu of 
+            relying on DTOState methods and use the standard Set method.</remarks>
+            <param name="sender">The source of the event.</param>
+            <param name="dtoEventArgs">An object that contains the event data.</param>
+        </member>
+        <member name="T:DataRx.SDK.Common.DTOEventArgs">
+            <summary>
+            Data Transfer Object Event Arguments
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Common.DTOEventArgs.#ctor(System.String)">
+            <summary>
+            DTOEventArgs Information Only
+            </summary>
+            <param name="info">Defined in API implementation</param>
+        </member>
+        <member name="M:DataRx.SDK.Common.DTOEventArgs.GetInfo">
+            <summary>
+            Gets Event Information
+            </summary>
+            <returns>Information defined in implementation</returns>
+        </member>
+        <member name="T:DataRx.SDK.Common.DataTransferObject">
+            <summary>
+            A DTO is a simple container for a set of aggregated data that needs to 
+            be transferred across a process or network boundary. It should contain 
+            no business logic and limit its behavior to activities such as internal 
+            consistency checking and basic validation.
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Common.DataTransferObject.OnPropertyChange(System.String)">
+            <summary>
+            Method to be called when a property is changed
+            </summary>
+            <param name="info">Information about the Event</param>
+            <event cref="T:DataRx.SDK.Common.DTOEventHandler">Raises DTOEventHandler Event</event>
+        </member>
+        <member name="F:DataRx.SDK.Common.DataTransferObject.CurrentUTC">
+            <summary>
+            Identifies the current Universal Coordinated Time. 
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Common.DataTransferObject.CurrentUTS">
+            <summary>
+            Identifies the current Unix Timestamp
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Common.DataTransferObject.CurrentDateID">
+            <summary>
+            Identifies the current DateID
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Common.DataTransferObject.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="E:DataRx.SDK.Common.DataTransferObject.PropertyChangedEvent">
+            <summary>
+            PropertyChangedEvent is raised when a property in the DTO object is changed
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataTransferObject.SerialVersionUID">
+            <summary>
+            The serial version UID associates an object with a class object container capable of 
+            serialization/deserialization. If the class object cannot be found an 
+            InvalidClassException will be thrown.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataTransferObject.GetType">
+            <summary>
+            Gets the runtime Type of this current instance 
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Common.DataTransferObject.ObjectState">
+            <summary>
+            Identifies the DTO Object State
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Common.DTOState">
+            <summary>
+            Static Reference to DTO ObjectStates
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Common.DTOState.New">
+            <summary>
+            Indicates the DTO is New and will be inserted into the database when set.
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Common.DTOState.Clean">
+            <summary>
+            Indicates the DTO is Clean and unchanged and does not require a set
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Common.DTOState.Dirty">
+            <summary>
+            Indicates the DTO is Dirty and will be updated in the database when set.
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Common.ObjectTransformation">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Common.ObjectTransformation.SerializeTaxonomyObjectToJson(DataRx.SDK.Model.TaxonomyObject,System.String)">
+            <summary>
+            Serializes a TaxonomyObject object to a Json string.
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <param name="format">(*optional) [None|Indent]</param>
+            <returns>Returns JavaScript Object Notation string</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:DataRx.SDK.Common.ObjectTransformation.SerializeTaxonomyObjectCollectionToJson(System.Collections.Generic.List{DataRx.SDK.Model.TaxonomyObject},System.String)" -->
+        <member name="M:DataRx.SDK.Common.ObjectTransformation.DeserializeTaxonomyObject(System.String,System.String)">
+            <summary>
+            Deserializes a TaxonomyObject from an xml or json string
+            </summary>
+            <param name="stringType"></param>
+            <param name="serializedObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.ObjectTransformation.SerializeTaxonomyObjectToXml(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            Converts a Data Transfer Object to a XML string.
+            </summary>
+            <param name="dto"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.ObjectTransformation.LoadFromJson(System.String)">
+            <summary>
+            Populates a Data Transfer Object from a JSON string.
+            </summary>
+            <param name="jsonString"></param>
+        </member>
+        <member name="M:DataRx.SDK.Common.ObjectTransformation.LoadFromXml(System.String)">
+            <summary>
+            Populates a Data Transfer Object from a XML string
+            </summary>
+            <param name="xmlString"></param>
+        </member>
+        <member name="F:DataRx.SDK.Common.ObjectTransformation.JsonSettings">
+            <summary>
+            JSON Settings
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Common.UTS">
+            <summary>
+            Unix Timestamp Helper Class
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Common.UTS.UnixEpoch">
+            <summary>
+            UnixEpoch Time (1970/01/01 00:00)
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Common.UTS.UtsNow">
+            <summary>
+            Returns Unix timestamp of now 
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Common.UTS.UtcDateToUTS(System.DateTime)">
+            <summary>
+            Converts UTC DateTime to a Unix timestamp
+            </summary>
+            <param name="value">UTC DateTime</param>
+            <returns>The provided DateTime in Unix timestamp format</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.UTS.LocalDateToUTS(System.DateTime)">
+            <summary>
+            Converts Localized DateTime to a (UTC) Unix timestamp
+            </summary>
+            <param name="value">Localized DateTime</param>
+            <returns>The provided DateTime in Unix timestamp format</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.UTS.UtsToDateTime(System.Int64)">
+            <summary>
+            Converts a Unix timestamp to DateTime
+            </summary>
+            <param name="value">UTS</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.UTS.UtsToDateId(System.Int64)">
+            <summary>
+            Converts Unix Time Stamp to DateID
+            </summary>
+            <param name="value">Unix Time Stamp</param>
+            <returns>Int64 (DateID)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Common.UTS.UtcToDateId(System.DateTime)">
+            <summary>
+            Converts UTC to DateID
+            </summary>
+            <param name="value">Univeral Time Cordinated</param>
+            <returns>Int64 (Date Demension DateID)</returns>
         </member>
         <member name="T:DataRx.SDK.Common.StringHelper">
             <summary>
@@ -115,6 +375,98 @@
             </summary>
             <returns>ICompositeModelProvider</returns>
         </member>
+        <member name="T:DataRx.SDK.Contracts.ITaxonomyObjectProvider">
+            <summary>
+            The ITaxonomyObjectProvider is implemented by one or more Taxonomy Data Access 
+            Object Provider(s) depending on the data access layer implementation.
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.GetTaxonomyObjectByTaxKey(System.String)">
+            <summary>
+            Interface contract method stub returns TaxonomyObject By TaxKey
+            </summary>
+            <param name="taxKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.GetTaxonomyObjectBySuperKey(System.String)">
+            <summary>
+            Interface contract method stub returns TaxonomyObject By SuperKey
+            </summary>
+            <param name="superKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.GetTaxonomyObjectByIndexName(System.String)">
+            <summary>
+            Interface contract method stub returns TaxonomyObject By IndexName
+            </summary>
+            <param name="indexName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.GetTaxonomyObjectByMDRKey(System.String)">
+            <summary>
+            Interface contract method stub returns TaxonomyObject By MDRKey
+            </summary>
+            <param name="mdrKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.GetTaxonomyObjectByMDRSuperKey(System.String)">
+            <summary>
+            Interface contract method stub returns TaxonomyObject By MDRSuperKey
+            </summary>
+            <param name="mdrSuperKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.GetTaxonomyObjectByTaxKeyComposite(System.String,System.String)">
+            <summary>
+            Interface contract method stub returns TaxonomyObject By TaxKey and SuperKey
+            </summary>
+            <param name="taxKey"></param>
+            <param name="superKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.GetTaxonomyObjectByMDRKeyComposite(System.String,System.String)">
+            <summary>
+            Interface contract method stub returns TaxonomyObject By MDRKey and MDRSuperKey
+            </summary>
+            <param name="mdrKey"></param>
+            <param name="mdrSuperKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.GetCompositeModelByTNS(System.String)">
+            <summary>
+            Interface contract method stub returns TaxonomyObject By TNS
+            </summary>
+            <param name="mdrSuperKey">MDR Super Key</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.SetTaxonomyObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            Interface contract method stub to save DTO data w/state.
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.SetStatelessTaxonomyObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            Interface contract method stub to save DTO data w/o state
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.InsertObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            Interface contract method stub to insert DTO data.
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Contracts.ITaxonomyObjectProvider.UpdateObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            Interface contract method stub to udate DTO data.
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
         <member name="T:DataRx.SDK.Data.AbstractDataFactory">
             <summary>
             Abstract Data Access Object (DAO) Factory
@@ -147,6 +499,11 @@
             TODO: Code Commentary
             </summary>
         </member>
+        <member name="F:DataRx.SDK.Data.SQLite3Factory.dco">
+            <summary>
+            Data Connection Option
+            </summary>
+        </member>
         <member name="M:DataRx.SDK.Data.SQLite3Factory.GetCompositeModelProvider">
             <summary>
             TODO: Code Commentary
@@ -156,6 +513,11 @@
         <member name="P:DataRx.SDK.Data.SQLite3Factory.Instance">
             <summary>
             TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Data.SQLite3Factory.Connection">
+            <summary>
+            Data Connection Object for SQLite
             </summary>
         </member>
         <member name="T:DataRx.SDK.Data.MSSQLFactory">
@@ -177,6 +539,386 @@
             <summary>
             TODO: Code Commentary
             </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.dbConn">
+            <summary>
+            SQLite DB Connection Object
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.instance">
+            <summary>
+            Early Class Instantiation. 
+            </summary>
+            <remarks>Static settings holds only one instance of this class. Double lock not required.</remarks>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.#ctor">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.GetCompositeModelByTNS(System.String)">
+            <summary>
+            TODO: Code Commentary
+            </summary>
+            <param name="tnsKey"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DataRx.SDK.Data.SQLITE3.CompositeObjectADOProvider.Instance">
+            <summary>
+            Sinleton Constructor
+            </summary>
+            <remarks>
+            Single point of entry
+            </remarks>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.DataConnectionObject.dbConn">
+            <summary>
+            SQLite DB Connection Object
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.DataConnectionObject.#ctor">
+            <summary>
+            Default Constuctor
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.DataConnectionObject.#ctor(System.String)">
+            <summary>
+            Default Constructor w/Connection String overide
+            </summary>
+            <param name="cnString"></param>
+        </member>
+        <member name="P:DataRx.SDK.Data.SQLITE3.DataConnectionObject.DBConn">
+            <summary>
+            Returns SQLiteConnection object
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.SelectWhere1EQ1">
+            <summary>
+            Returns SELECT * FROM WHERE 1 = 1
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.InsertInto">
+            <summary>
+            Returns INSERT Statement
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.UpdateByTaxKey">
+            <summary>
+            Returns Update Statement By TaxKey
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.DeleteTaxonomyObjectByTaxKey">
+            <summary>
+            DELETE FROM MDR_TAXONOMY_OBJECT WHERE TAX_KEY = @TAX_KEY
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.DeleteTaxonomyObjectBySuperKey">
+            <summary>
+            DELETE FROM MDR_TAXONOMY_OBJECT WHERE SUPER_KEY = @SUPER_KEY
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.SelectByTaxKey">
+            <summary>
+            SELECT BY TAX_KEY
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.SelectBySuperKey">
+            <summary>
+            SELECT BY SUPER_KEY
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.SelectByIndexName">
+            <summary>
+            SELECT BY INDEX_NAME
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.SelectByMDRKey">
+            <summary>
+            SELECT BY MDR_KEY
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.SelectByMDRSuperKey">
+            <summary>
+            SELECT BY MDR_SUPER_KEY
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQLBase.CreateMasterTaxonomyObjectTable">
+            <summary>
+            CREATE TABLE MDR_TAXONOMY_OBJECT
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQL">
+            <summary>
+            Extension class. In the event you wish to extend this object or create your own scripts, 
+            place them in this method and the code generator will not disrupt your changes. Not, if you 
+            make your changes using the Arizona SDK
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQL.SerialVersionUID">
+            <summary>
+            Serialized UUID of current DTO
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.SQL.TaxonomyObjectSQL.GetCompositeModelByTNS">
+            <summary>
+            Returns Composite Object Model By TNS
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider">
+            <summary>
+            The Taxonomy Object ADO Provider transforms persistent non-scalar 
+            object values into scalar/atomized relational form and back.
+            </summary>
+            <remarks>TaxonomyObject DTOs are stored in MDR_TAXONOMY_OBJECT</remarks>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.dbConn">
+            <summary>
+            SQLite DB Connection Object
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.instance">
+            <summary>
+            Early Class Instantiation. 
+            </summary>
+            <remarks>Static settings holds only one instance of this class. Double lock not required.</remarks>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.#ctor">
+            <summary>
+            Private constructor instantiates the SQLiteConnection object
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.GetTaxonomyObjectByTaxKey(System.String)">
+            <summary>
+            Returns TaxonomyObject By TaxKey
+            </summary>
+            <remarks>
+            Note: all read requests for a DTO are returned in an array. 
+            If the array is empty - no records exist.
+            </remarks>
+            <param name="taxKey">Primary key constraint</param>
+            <returns>Collection with a single TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.GetTaxonomyObjectBySuperKey(System.String)">
+            <summary>
+            Returns TaxonomyObject By SuperKey
+            </summary>
+            <param name="superKey">Foriegn key constraint</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.GetTaxonomyObjectByIndexName(System.String)">
+            <summary>
+            Returns TaxonomyObject By IndexName
+            </summary>
+            <param name="indexName">Index Name</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.GetTaxonomyObjectByMDRKey(System.String)">
+            <summary>
+            Returns TaxonomyObject By MDRKey
+            </summary>
+            <param name="mdrKey">MDR Key</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.GetTaxonomyObjectByMDRSuperKey(System.String)">
+            <summary>
+            Returns TaxonomyObject By MDRSuperKey
+            </summary>
+            <param name="mdrSuperKey">MDR Super Key</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.GetTaxonomyObjectByTaxKeyComposite(System.String,System.String)">
+            <summary>
+            Returns TaxonomyObject By TaxKey and SuperKey
+            </summary>
+            <param name="taxKey">Primary key constraint</param>
+            <param name="superKey">Foereign key contraint</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.GetTaxonomyObjectByMDRKeyComposite(System.String,System.String)">
+            <summary>
+            Returns TaxonomyObject By TaxKey and SuperKey
+            </summary>
+            <param name="taxKey">Primary key constraint</param>
+            <param name="superKey">Foereign key contraint</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.GetCompositeModelByTNS(System.String)">
+            <summary>
+            Returns CompositeModel By TNS
+            </summary>
+            <param name="mdrSuperKey">Taxonomy Schema Namespace. e.g: COM or A2Z</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.SetTaxonomyObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            Saves object DTO w/state to a SQLite database. The object state is managed by 
+            evaluating the object's state to determine id INSERT or UPDATE is required. 
+            If the object state is clean - no insert or update will occur. NOTE: This 
+            method should only be called from an environment with state. If you are 
+            performing I/O in a stateless environment found in the web tier, you are 
+            encouraged to call SetStatelessTaxonomyObject where the process will first 
+            attempt to lookup the record being passed to determine state. 
+            </summary>
+            <remarks>
+            When saving a DTO, the saving method will return a standalone clean object. 
+            Arrays are not reurned when saving operations are performed.
+            </remarks>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.SetStatelessTaxonomyObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            Saves object DTO w/o state to a SQLite database. Using this method assumes you are not 
+            managing object state in your web tier. Accordingly, If you send this method an object 
+            it will first attempt to lookup the record being passed to determine state. In the event 
+            you DO NOT want the overhead of this additional thread being opened, you can manage the 
+            state yourself and make the appropriate call to the appropriate InsertObject 
+            method or UpdateObject method.
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.InsertObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            Inserts TaxonomyObject DTO into the MDR_TAXONOMY_OBJECT table
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.UpdateObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            Updates TaxonomyObject DTO into the MDR_TAXONOMY_OBJECT table
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.ToDataTransferObject(System.Data.SQLite.SQLiteDataReader)">
+            <summary>
+            Converts SQL Data Reader row to a TaxonomyObject.
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.ToSqlCmdParameters(DataRx.SDK.Model.TaxonomyObject,System.Data.SQLite.SQLiteCommand)">
+            <summary>
+            Adds SQL Command Parameters from the TaxonomyObject for UPDATES and INSERTS.
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Data.SQLITE3.TaxonomyObjectADOProvider.Instance">
+            <summary>
+            Sinleton Constructor
+            </summary>
+            <remarks>
+            Single point of entry
+            </remarks>
+        </member>
+        <member name="F:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.instance">
+            <summary>
+            Early Class Instantiation. 
+            </summary>
+            <remarks>Static settings holds only one instance of this class. Double lock not required.</remarks>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.#ctor">
+            <summary>
+            Private constructor instantiates the SQLiteConnection object
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.GetTaxonomyObjectByTaxKey(System.String)">
+            <summary>
+            DAO Provider returns TaxonomyObject By TaxKey from ADO Provider.
+            </summary>
+            <param name="taxKey"></param>
+            <returns>Collection with a single TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.GetTaxonomyObjectBySuperKey(System.String)">
+            <summary>
+            DAO Provider returns TaxonomyObjects By SuperKey from ADO Provider.
+            </summary>
+            <param name="superKey"></param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.GetTaxonomyObjectByIndexName(System.String)">
+            <summary>
+            DAO Provider returns TaxonomyObjecst By IndexName from ADO Provider.
+            </summary>
+            <param name="indexName"></param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.GetTaxonomyObjectByMDRKey(System.String)">
+            <summary>
+            DAO Provider returns TaxonomyObjects By MDRKey from ADO Provider.
+            </summary>
+            <param name="mdrKey"></param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.GetTaxonomyObjectByMDRSuperKey(System.String)">
+            <summary>
+            DAO Provider returns TaxonomyObjects By MDRSuperKey from ADO Provider.
+            </summary>
+            <param name="mdrSuperKey">MDR Super Key</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.GetTaxonomyObjectByTaxKeyComposite(System.String,System.String)">
+            <summary>
+            DAO Provider returns TaxonomyObjects By TaxKey and SuperKey from ADO Provider.
+            </summary>
+            <param name="taxKey">Primary key constraint</param>
+            <param name="superKey">Foreign key constraint</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.GetTaxonomyObjectByMDRKeyComposite(System.String,System.String)">
+            <summary>
+            DAO Provider returns TaxonomyObjects By MDRKey and MDRSuperKey from ADO Provider.
+            </summary>
+            <param name="mdrKey"></param>
+            <param name="mdrSuperKey"></param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.GetCompositeModelByTNS(System.String)">
+            <summary>
+            DAO Provider returns TaxonomyObjects By Taxonomy Namespace (TNS) from ADO Provider.
+            </summary>
+            <param name="mdrSuperKey">MDR Super Key</param>
+            <returns>Collection of TaxonomyObject(s)</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.SetTaxonomyObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            DAO Provider saves 'DIRTY' or 'NEW' DTO and returns 'CLEAN' TaxonomyObject from ADO Provider.
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.SetStatelessTaxonomyObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            DAO Provider saves DTO w/o state and returns 'CLEAN' TaxonomyObject from ADO Provider.
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.InsertObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            DAO Provider returns 'CLEAN' TaxonomyObject after ADO performs it's SQL INSERT operation.
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="M:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.UpdateObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            DAO Provider returns 'CLEAN' TaxonomyObject after ADO performs it's SQL UPDATE operation.
+            </summary>
+            <param name="dto">TaxonomyObject</param>
+            <returns>TaxonomyObject</returns>
+        </member>
+        <member name="P:DataRx.SDK.Data.SQLITE3.TaxonomyObjectDAOProvider.Instance">
+            <summary>
+            Sinleton Constructor
+            </summary>
+            <remarks>
+            Single point of entry
+            </remarks>
         </member>
         <member name="T:DataRx.SDK.Model.CompositeModel">
             <summary>
@@ -389,6 +1131,187 @@
             <summary>
             Identifies if attribute is indexed
             </summary>
+        </member>
+        <member name="T:DataRx.SDK.Model.TaxonomyObjectBase">
+            <summary>
+            TODO: Code commentary
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.TaxonomyObjectBase.TaxKey">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.TaxonomyObjectBase.SuperKey">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.TaxonomyObjectBase.IndexName">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.TaxonomyObjectBase.TargetMDR">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.TaxonomyObjectBase.MDRKey">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.TaxonomyObjectBase.MDRSuperKey">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.TaxonomyObjectBase.MDRLexicon">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.TaxonomyObjectBase.TaxStandard">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="P:DataRx.SDK.Model.TaxonomyObjectBase.ShortDesc">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Model.TaxonomyObject.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Model.TaxonomyObject.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DataRx.SDK.Service.TaxonomyObjectServiceProvider">
+            <summary>
+            The TaxonomyObjectServiceProvider serves as the primary entry point for the 
+            TaxonomyObject data transfer object (DTO)
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Service.TaxonomyObjectServiceProvider.instance">
+            <summary>
+            Early Class Instantiation. 
+            </summary>
+            <remarks>Static settings holds only one instance of this class. Double lock not required.</remarks>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.#ctor">
+            <summary>
+            Private constructor instantiates the SQLiteConnection object
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Service.TaxonomyObjectServiceProvider.config">
+            <summary>
+            Callstack API Settings
+            </summary>
+        </member>
+        <member name="F:DataRx.SDK.Service.TaxonomyObjectServiceProvider.factory">
+            <summary>
+            DAO Factory 
+            </summary>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.GetTaxonomyObjectByTaxKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="taxKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.GetTaxonomyObjectBySuperKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="superKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.GetTaxonomyObjectByIndexName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="indexName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.GetTaxonomyObjectByMDRKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mdrKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.GetTaxonomyObjectByMDRSuperKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mdrSuperKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.GetTaxonomyObjectByTaxKeyComposite(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="taxKey"></param>
+            <param name="superKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.GetTaxonomyObjectByMDRKeyComposite(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mdrKey"></param>
+            <param name="mdrSuperKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.GetCompositeModelByTNS(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mdrSuperKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.SetTaxonomyObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.SetStatelessTaxonomyObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.InsertObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataRx.SDK.Service.TaxonomyObjectServiceProvider.UpdateObject(DataRx.SDK.Model.TaxonomyObject)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DataRx.SDK.Service.TaxonomyObjectServiceProvider.Instance">
+            <summary>
+            Sinleton Constructor
+            </summary>
+            <remarks>
+            Single point of entry
+            </remarks>
         </member>
     </members>
 </doc>

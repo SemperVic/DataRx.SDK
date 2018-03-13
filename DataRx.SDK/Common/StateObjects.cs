@@ -110,7 +110,6 @@ namespace DataRx.SDK.Common
         /// <summary>
         /// Default Constructor
         /// </summary>
-        [DataMember]
         public DataTransferObject()
         {
             SerialVersionUID = new Guid();

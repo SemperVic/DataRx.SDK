@@ -40,15 +40,18 @@ namespace DataRx.SDK.Service
         private TaxonomyObjectServiceProvider()
         {
             // Set Data Source Object
-            this.config = Settings.Default;
+            this.dataSource = new DataSource();
             this.dataSource.DSN = Settings.Default.DSN;
             this.dataSource.DBHost = Settings.Default.DBHost;
             this.dataSource.DBCatalog = Settings.Default.DBCatalog;
             this.dataSource.DBUser = Settings.Default.DBUser;
             this.dataSource.DBPassword = Settings.Default.DBPassword;
             this.dataSource.DBFactory = Settings.Default.DBFactory;
+            this.dataSource.DBTrust = Settings.Default.DBTrust;
+            this.dataSource.CNString = Settings.Default.CNString;
+
             // Set the factory
-            this.factory = DAOFactory.Instance.GetDAOFactory(this.config.DBFactory);
+            this.factory = DAOFactory.Instance.GetDAOFactory(this.dataSource.DBFactory);
             //logger.Info("Initializing MetadataADOProvider");
         }        
         #endregion

@@ -29,7 +29,7 @@ namespace DataRx.SDK.Data.SQLITE3
         /// <summary>
         /// SQLite DB Connection Object
         /// </summary>
-        private SQLiteConnection dbConn;
+        private SQLiteConnection dbConn; // = new SQLiteConnection(SQLite3Factory.Instance.Connection.);
 
         /// <summary>
         /// Early Class Instantiation. 
@@ -54,8 +54,8 @@ namespace DataRx.SDK.Data.SQLITE3
         private TaxonomyObjectADOProvider()
         {
             //logger.Info("Initializing MetadataADOProvider");
-            SQL3DBase dbase = new SQL3DBase();
-            dbConn = dbase.DBConnection();
+            //SQL3DBase dbase = new SQL3DBase();
+            dbConn = SQLite3Factory.Instance.Connection.DBConn;
         }
         #endregion
 
@@ -71,6 +71,7 @@ namespace DataRx.SDK.Data.SQLITE3
         /// <returns>Collection with a single TaxonomyObject</returns>
         public List<TaxonomyObject> GetTaxonomyObjectByTaxKey(String taxKey)
         {
+
             // Create TaxonomyObject Array
             List<TaxonomyObject> dtoArray = new List<TaxonomyObject>();
             // Prepare for DB Connection and Query Statement

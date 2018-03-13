@@ -76,5 +76,23 @@ namespace DataRx.SDK {
                 return ((string)(this["DBFactory"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DBTrust {
+            get {
+                return ((bool)(this["DBTrust"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CNString {
+            get {
+                return ((string)(this["CNString"]));
+            }
+        }
     }
 }

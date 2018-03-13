@@ -43,6 +43,7 @@ namespace DataRx.SDK.Data
             switch (daoFactoryProvider)
             {
                 case DAOFactoryProvider.SQLITE3:
+                    
                     return SQLite3Factory.Instance;
                 case DAOFactoryProvider.MSSQL2012:
                     return MSSQLFactory.Instance;
@@ -63,6 +64,11 @@ namespace DataRx.SDK.Data
     /// </summary>
     public sealed class SQLite3Factory : IDAOFactory
     {
+        /// <summary>
+        /// Data Connection Option
+        /// </summary>
+        private SQLITE3.DataConnectionObject dco = new SQLITE3.DataConnectionObject();
+
         private static SQLite3Factory instance = new SQLite3Factory();
         /// <summary>
         /// TODO: Code Commentary
@@ -70,6 +76,13 @@ namespace DataRx.SDK.Data
         public static SQLite3Factory Instance
         {
             get { return instance; }
+        }
+        /// <summary>
+        /// Data Connection Object for SQLite
+        /// </summary>
+        public SQLITE3.DataConnectionObject Connection
+        {
+            get { return this.dco; }
         }
         /// <summary>
         /// TODO: Code Commentary

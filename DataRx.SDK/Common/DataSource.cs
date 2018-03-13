@@ -43,5 +43,16 @@ namespace DataRx.SDK.Common
         /// </summary>
         [DataMember]
         public String DBFactory { get; set; }
+        /// <summary>
+        /// Does a database trust exist
+        /// </summary>
+        [DataMember]
+        public Boolean DBTrust { get; set; }
+        /// <summary>
+        /// Database Connection String
+        /// </summary>
+        [DataMember]
+        public String CNString { get; set; }
+
     }
 }
